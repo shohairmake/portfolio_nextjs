@@ -60,7 +60,7 @@ class MyApp extends App {
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
                         <PageTransition
-                            timeout={300}
+                            timeout={100}
                             classNames="page-transition"
                         >
                             <Component {...pageProps} key={router.route} />
@@ -71,14 +71,14 @@ class MyApp extends App {
                             }
                             .page-transition-enter-active {
                                 opacity: 1;
-                                transition: opacity 300ms;
+                                transition: opacity 200ms;
                             }
                             .page-transition-exit {
                                 opacity: 1;
                             }
                             .page-transition-exit-active {
                                 opacity: 0;
-                                transition: opacity 300ms;
+                                transition: opacity 200ms;
                             }
                         `}</style>
                     </ThemeProvider>

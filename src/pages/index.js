@@ -1,19 +1,20 @@
-import React from 'react';
-import { Container, Grid, Hidden, Typography } from '@material-ui/core';
-import HeaderList from '../components/header/HeaderList';
-import Header from '../components/header/Header';
-import Footer from '../components/Footer';
-import { makeStyles } from '@material-ui/core/styles';
-import topImg from '../../static/img/uyuniSaltLakemono.jpg';
-import hair from '../../static/img/hair2.jpg';
-import SwipeDrawer from '../components/header/SwipeDrawer';
-import Album from '../components/Album/Album';
-import Logo from '../components/svg/Logo';
-import anime from 'animejs';
-import LottieAnime from '../components/Lottie/LottieAnime';
-import workLogo from '../../static/img/WORK.png';
-import aboutLogo from '../../static/img/ABOUT.png';
-import contactLogo from '../../static/img/CONTACT.png';
+import React from 'react'
+import { Container, Grid, Hidden, Typography } from '@material-ui/core'
+import HeaderList from '../components/header/HeaderList'
+import Header from '../components/header/Header'
+import Footer from '../components/Footer'
+import { makeStyles } from '@material-ui/core/styles'
+import topImg from '../../static/img/uyuniSaltLakemono.jpg'
+import hair from '../../static/img/hair2.jpg'
+import SwipeDrawer from '../components/header/SwipeDrawer'
+import Album from '../components/Album/Album'
+import Logo from '../components/svg/Logo'
+import anime from 'animejs'
+import LottieBall from '../components/Lottie/ball/LottieBall'
+import workLogo from '../../static/img/WORK.png'
+import aboutLogo from '../../static/img/ABOUT.png'
+import contactLogo from '../../static/img/CONTACT.png'
+import VisibilitySensor from 'react-visibility-sensor'
 
 const svgAnimation = () => {
     anime({
@@ -23,19 +24,19 @@ const svgAnimation = () => {
         duration: 1000,
         fill: ['rgba(0,0,0,0)', '#000'],
         delay: function (el, i) {
-            return i * 500;
+            return i * 500
         },
-    });
-};
+    })
+}
 
 export default function Index(props) {
-    const classes = useStyles();
+    const classes = useStyles()
     const [state, setState] = React.useState({
         fadeInWork: classes.hide,
         fadeInAbout: classes.hide,
         fadeInContact: classes.hide,
-    });
-    const [isActive, setIsActive] = React.useState(false);
+    })
+    const [isActive, setIsActive] = React.useState(false)
 
     React.useEffect(() => {
         const scrollAction = () => {
@@ -51,8 +52,8 @@ export default function Index(props) {
                 setState({
                     ...state,
                     fadeInWork: `${classes.imgLogo} ${classes.fadeInDown}`,
-                });
-                setIsActive(true);
+                })
+                setIsActive(true)
             }
             if (
                 document.documentElement.scrollTop > 1200 ||
@@ -61,7 +62,7 @@ export default function Index(props) {
                 setState({
                     ...state,
                     fadeInAbout: `${classes.imgLogo} ${classes.fadeInDown}`,
-                });
+                })
             }
             if (
                 document.documentElement.scrollTop > 1800 ||
@@ -70,18 +71,18 @@ export default function Index(props) {
                 setState({
                     ...state,
                     fadeInContact: `${classes.imgLogoContact} ${classes.fadeInDown}`,
-                });
+                })
             }
-        };
-        window.addEventListener('scroll', scrollAction);
+        }
+        window.addEventListener('scroll', scrollAction)
         return function cleanup() {
-            window.removeEventListener('scroll', scrollAction);
-        };
-    });
+            window.removeEventListener('scroll', scrollAction)
+        }
+    })
 
     React.useEffect(() => {
-        svgAnimation();
-    }, []);
+        svgAnimation()
+    }, [])
 
     return (
         <>
@@ -104,7 +105,7 @@ export default function Index(props) {
                                         width={140}
                                         height={60}
                                     />
-                                    <LottieAnime />
+                                    <LottieBall />
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -163,9 +164,9 @@ export default function Index(props) {
                     </Grid>
                 </Container>
             </main>
-            <Footer title="Portfolio" description="For Everyone's happiness" />
+            <Footer description="Hair and Web designer" />
         </>
-    );
+    )
 }
 
 const textAnime = {
@@ -176,7 +177,7 @@ const textAnime = {
     textTransform: 'uppercase',
     letterSpacing: '0.1em',
     animation: '$tilt-in-tr 5s cubic-bezier(0.250, 0.460, 0.450, 0.940)',
-};
+}
 
 const useStyles = makeStyles((theme) => ({
     heroContent: {
@@ -184,6 +185,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage: `url(${topImg})`,
         padding: theme.spacing(8, 0, 6),
         minHeight: '800px',
+        width: '100%',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -258,14 +260,18 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
     },
     imgLogo: {
-        width: '200px',
+        width: '14em',
         height: 'auto',
-        opacity: '0.7',
+        '@media (max-width:600px)': {
+            width: '11em',
+        },
     },
     imgLogoContact: {
-        width: '250px',
+        width: '18em',
         height: 'auto',
-        opacity: '0.7',
+        '@media (max-width:600px)': {
+            width: '15em',
+        },
     },
     textAnime: {
         ...textAnime,
@@ -317,4 +323,4 @@ const useStyles = makeStyles((theme) => ({
             opacity: '1',
         },
     },
-}));
+}))

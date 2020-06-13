@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 import { makeStyles } from '@material-ui/styles';
-import animationData from './35-loader.json';
+import animationData from './ball.json';
 
 const useStyles = makeStyles({
     animation: {
@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function LottieAnime() {
+export default function LottieBall() {
     const classes = useStyles();
 
     const defaultOptions = {

@@ -1,10 +1,9 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import { tileData } from './tileData';
-import Link from 'next/link';
-import anime from 'animejs';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import { GridList, GridListTile } from '@material-ui/core'
+import { tileData } from './tileData'
+import Link from 'next/link'
+import { ImageAnimation } from '../helper/animationHelper'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,60 +28,16 @@ const useStyles = makeStyles((theme) => ({
         transformOrigin: '0 50%',
         zIndex: 100,
     },
-}));
-
-const ImageAnimation = (box, line, element) => {
-    anime
-        .timeline({ loop: false })
-        .add({
-            targets: line,
-            scaleY: [0, 1],
-            opacity: [0.5, 1],
-            easing: 'easeOutExpo',
-            duration: 700,
-        })
-        .add({
-            targets: line,
-            left: 0,
-            width: '100%',
-            easing: 'easeOutExpo',
-            duration: 700,
-            delay: 100,
-        })
-        .add({
-            targets: line,
-            right: 0,
-            translateX: '100%',
-            easing: 'easeOutExpo',
-            duration: 700,
-            delay: 100,
-        })
-        .add(
-            {
-                targets: element,
-                opacity: [0, 1],
-                easing: 'easeOutExpo',
-                duration: 600,
-            },
-            '-=1000'
-        )
-        .add({
-            targets: line,
-            opacity: 0,
-            duration: 1000,
-            easing: 'easeOutExpo',
-            delay: 1000,
-        });
-};
+}))
 
 export default function Album(props) {
-    const classes = useStyles();
+    const classes = useStyles()
 
     React.useEffect(() => {
         if (props.isActive) {
-            ImageAnimation('.imgBox', '.line', '.img');
+            ImageAnimation('.line', '.img', 1)
         }
-    }, [props.isActive]);
+    }, [props.isActive])
 
     return (
         <Link href="/work" passHref prefetch={false}>
@@ -109,5 +64,5 @@ export default function Album(props) {
                 </GridList>
             </div>
         </Link>
-    );
+    )
 }
