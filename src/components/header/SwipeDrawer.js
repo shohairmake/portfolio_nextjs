@@ -1,12 +1,12 @@
-import React from 'react';
-import Link from 'next/link';
-import { makeStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import React from 'react'
+import Link from 'next/link'
+import { makeStyles } from '@material-ui/core/styles'
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
+import List from '@material-ui/core/List'
+import Divider from '@material-ui/core/Divider'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
 import {
     Home,
     BurstMode,
@@ -15,8 +15,8 @@ import {
     Facebook,
     Instagram,
     Twitter,
-} from '@material-ui/icons';
-import { HamburgerSlider } from 'react-animated-burgers';
+} from '@material-ui/icons'
+import { HamburgerSlider } from 'react-animated-burgers'
 
 const useStyles = makeStyles({
     list: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles({
         background: 'linear-gradient(to left, #fafafa, #eef2f3)',
         opacity: '0.8',
     },
-});
+})
 
 const Contet = ({ href = {}, text = {}, icon = {} }) => (
     <Link href={href} passHref>
@@ -38,15 +38,15 @@ const Contet = ({ href = {}, text = {}, icon = {} }) => (
             <ListItemText primary={text} />
         </ListItem>
     </Link>
-);
+)
 
 export default function SwipeDrawer({ children }) {
-    const classes = useStyles();
-    const [isActive, setIsActive] = React.useState(false);
+    const classes = useStyles()
+    const [isActive, setIsActive] = React.useState(false)
 
     const toggleDrawer = (open) => (event) => {
-        setIsActive(open);
-    };
+        setIsActive(open)
+    }
 
     const list = () => (
         <div
@@ -68,7 +68,7 @@ export default function SwipeDrawer({ children }) {
                 <Contet href="/" text="Twitter" icon={<Twitter />} />
             </List>
         </div>
-    );
+    )
 
     return (
         <div>
@@ -93,5 +93,5 @@ export default function SwipeDrawer({ children }) {
                 </SwipeableDrawer>
             </>
         </div>
-    );
+    )
 }

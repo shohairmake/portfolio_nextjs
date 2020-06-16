@@ -6,8 +6,15 @@ import { makeStyles } from '@material-ui/styles'
 
 const useStyle = makeStyles({
     name: {
-        letterSpacing: '0.5em',
         marginLeft: '1.5em',
+        '& h6': {
+            fontWeight: 400,
+            letterSpacing: '0.1em',
+        },
+        '& h5': {
+            letterSpacing: '0.5em',
+            marginTop: '0.5em',
+        },
     },
 })
 
@@ -28,14 +35,13 @@ export default function LottiePcDeskTop() {
             direction="row"
             justify="flex-start"
             alignItems="center"
+            className={classes.name}
         >
             <Grid item xs={6}>
-                <Typography
-                    variant={'h5'}
-                    align="center"
-                    className={classes.name}
-                >
-                    Hair & Web Designer <br />
+                <Typography variant={'h6'} align="center" noWrap={true}>
+                    Hair & Web Designer
+                </Typography>
+                <Typography variant={'h5'} align="center">
                     SHO TANAKA
                 </Typography>
             </Grid>

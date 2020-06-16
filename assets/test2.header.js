@@ -1,22 +1,22 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import { Grid, Tabs, Tab } from '@material-ui/core';
-import Link from 'next/link';
+import React from 'react'
+import { makeStyles } from '@material-ui/styles'
+import { Grid, Tabs, Tab } from '@material-ui/core'
+import Link from 'next/link'
 
 const useStyles = makeStyles((theme) => ({
     header: {
         backgroundColor: theme.palette.background.paper,
         width: 'auto',
     },
-}));
+}))
 
 export default function Header() {
-    const [value, setValue] = React.useState(0);
-    const classes = useStyles();
+    const [value, setValue] = React.useState(0)
+    const classes = useStyles()
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+        setValue(newValue)
+    }
 
     return (
         <>
@@ -44,5 +44,5 @@ export default function Header() {
                 </Tabs>
             </Grid>
         </>
-    );
+    )
 }

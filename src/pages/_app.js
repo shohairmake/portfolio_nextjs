@@ -1,12 +1,12 @@
-import React from 'react';
-import App from 'next/app';
-import Head from 'next/head';
-import { ThemeProvider, StylesProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../theme';
-import { PageTransition } from 'next-page-transitions';
+import React from 'react'
+import App from 'next/app'
+import Head from 'next/head'
+import { ThemeProvider, StylesProvider } from '@material-ui/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import theme from '../theme'
+import { PageTransition } from 'next-page-transitions'
 // import NextSeo from 'next-seo';
-import 'animate.css';
+import 'animate.css'
 
 // const DEFAULT_SEO = {
 //     title: 'StraD Home',
@@ -31,25 +31,25 @@ import 'animate.css';
 
 class MyApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
-        let pageProps = {};
+        let pageProps = {}
 
         if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps(ctx);
+            pageProps = await Component.getInitialProps(ctx)
         }
 
-        return { pageProps };
+        return { pageProps }
     }
 
     componentDidMount() {
         // Remove the server-side injected CSS.
-        const jssStyles = document.querySelector('#jss-server-side');
+        const jssStyles = document.querySelector('#jss-server-side')
         if (jssStyles) {
-            jssStyles.parentNode.removeChild(jssStyles);
+            jssStyles.parentNode.removeChild(jssStyles)
         }
     }
 
     render() {
-        const { Component, pageProps, router } = this.props;
+        const { Component, pageProps, router } = this.props
 
         return (
             <>
@@ -84,8 +84,8 @@ class MyApp extends App {
                     </ThemeProvider>
                 </StylesProvider>
             </>
-        );
+        )
     }
 }
 
-export default MyApp;
+export default MyApp

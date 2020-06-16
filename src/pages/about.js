@@ -4,11 +4,21 @@ import Header from '../components/header/Header'
 import Footer from '../components/Footer'
 import SwipeDrawer from '../components/header/SwipeDrawer'
 import aboutLogo from '../../static/img/ABOUT.png'
-import { Container, Grid, Hidden, Typography } from '@material-ui/core'
+import {
+    Container,
+    Grid,
+    Hidden,
+    Typography,
+    TextField,
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import LottiePcDeskTop from '../components/Lottie/pcDeskTop/pcDeskTop'
 import CoffeeAndMan from '../components/Lottie/coffeeAndMan/coffeeAndMan'
-import { ImageAnimation } from '../components/helper/animationHelper'
+import {
+    ImageAnimation,
+    ImageAnimationWrapper,
+    VisibleContainer,
+} from '../components/helper/animationHelper'
 
 const useStyles = makeStyles((theme) => ({
     heroContent: {
@@ -71,14 +81,20 @@ const useStyles = makeStyles((theme) => ({
     heroText: {
         paddingTop: '20px',
         paddingLeft: '30px',
+        animation: '$fadeIn 1s ease-in-out',
         '& h2': {
             fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
             fontWeight: 400,
             lineHeight: 1.2,
             letterSpacing: '0.2em',
+            marginBottom: '1em',
         },
         '& h5': {
-            marginTop: '1em',
+            zIndex: 1,
+            letterSpacing: '0.5em',
+            '@media (max-width:600px)': {
+                letterSpacing: '0',
+            },
         },
     },
     description: {
@@ -89,10 +105,11 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: '6em',
     },
     skillDescription: {
-        marginTop: '1.5em',
-        marginBottom: '5em',
         letterSpacing: '0.3em',
         fontWeight: 400,
+    },
+    fadeIn: {
+        animation: '$fadeIn 2s ease-in-out',
     },
     '@keyframes fade-in-top': {
         '0%': {
@@ -104,10 +121,37 @@ const useStyles = makeStyles((theme) => ({
             opacity: 0.7,
         },
     },
+    '@keyframes scale-in': {
+        '0%': {
+            transform: 'scale(2,0.5)',
+            opacity: 0,
+        },
+        '50%': {
+            transform: 'scale(1.5,1)',
+            opacity: 0.4,
+        },
+        '100%': {
+            transform: 'translateY(0)',
+            opacity: 0.7,
+        },
+    },
+    '@keyframes fadeIn': {
+        from: {
+            opacity: '0',
+        },
+        to: {
+            opacity: '1',
+        },
+    },
 }))
 
 export default function about() {
+    const [isVisible, setIsVisible] = React.useState(false)
     const classes = useStyles()
+
+    React.useEffect(() => {
+        ImageAnimation('.line', '.text', 1, 1000)
+    }, [])
     return (
         <>
             <Header>
@@ -137,9 +181,19 @@ export default function about() {
                                     shaping your Identity <br />
                                     with design.
                                 </Typography>
-                                <Typography variant={'h5'}>
-                                    アイデンティティをデザインする
-                                </Typography>
+                                <ImageAnimationWrapper
+                                    width="70%"
+                                    height="100%"
+                                    color="#000"
+                                >
+                                    <Typography
+                                        variant={'h5'}
+                                        className={'text'}
+                                        noWrap={true}
+                                    >
+                                        アイデンティティをデザインする
+                                    </Typography>
+                                </ImageAnimationWrapper>
                             </Grid>
                             <Grid
                                 container
@@ -148,48 +202,66 @@ export default function about() {
                             >
                                 <LottiePcDeskTop />
                             </Grid>
-                            <Grid>
-                                <Typography
-                                    variant={'h5'}
-                                    className={classes.description}
-                                >
-                                    美容師、ヘアメイク、エンジニア
-                                    <br />
-                                    全て 探究心が必要な職業
-                                    <br />
-                                    日々、自己研鑽が必要な職業
-                                    <br />
-                                    この職人気質な世界に僕は魅了された
-                                    <br />
-                                    異色のパラレルキャリア
-                                    <br />
-                                    貴方の仕事のお手伝いをさせて下さい。
-                                    <br />
-                                </Typography>
-                            </Grid>
-                            <Grid
-                                container
-                                justify="center"
-                                alignItems="center"
+                            <VisibleContainer
+                                state={isVisible}
+                                setState={setIsVisible}
+                                animeClass={classes.fadeIn}
                             >
-                                <Typography variant={'h2'}>SKILL</Typography>
-                            </Grid>
-                            <Grid
-                                container
-                                justify="center"
-                                alignItems="center"
-                            >
-                                <Typography
-                                    variant={'h6'}
-                                    align="center"
-                                    className={classes.skillDescription}
+                                <Grid>
+                                    <Typography
+                                        variant={'h5'}
+                                        className={classes.description}
+                                    >
+                                        美容師、ヘアメイク、エンジニア
+                                        <br />
+                                        全て 探究心が必要な職業
+                                        <br />
+                                        日々、自己研鑽が必要な職業
+                                        <br />
+                                        この職人気質な世界に僕は魅了された
+                                        <br />
+                                        異色のパラレルキャリア
+                                        <br />
+                                        貴方の仕事のお手伝いをさせて下さい。
+                                        <br />
+                                    </Typography>
+                                </Grid>
+                            </VisibleContainer>
+                            <Grid style={{ marginBottom: '15em' }}>
+                                <Grid
+                                    container
+                                    justify="center"
+                                    alignItems="center"
+                                    style={{ marginBottom: '2em' }}
                                 >
-                                    JavaScript, TypeScript, React.js, Redux,
-                                    React Native,
-                                    <br />
-                                    Next.js, Vue.js, Node.js, WordPress etc.
-                                    <br />
-                                </Typography>
+                                    <Typography variant={'h2'}>
+                                        SKILL
+                                    </Typography>
+                                </Grid>
+                                <Grid
+                                    container
+                                    justify="center"
+                                    alignItems="center"
+                                >
+                                    <ImageAnimationWrapper
+                                        width="90%"
+                                        height="100%"
+                                        color="#000"
+                                    >
+                                        <Typography
+                                            variant={'h6'}
+                                            align="center"
+                                            className={classes.skillDescription}
+                                        >
+                                            JavaScript, TypeScript, React.js,
+                                            Redux, React Native,
+                                            <br />
+                                            Next.js, Vue.js, Node.js, WordPress
+                                            etc.
+                                            <br />
+                                        </Typography>
+                                    </ImageAnimationWrapper>
+                                </Grid>
                             </Grid>
                             <Grid>
                                 <Typography

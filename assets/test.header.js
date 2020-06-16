@@ -1,10 +1,10 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import TypoGraphy from '@material-ui/core/Typography';
-import { Collections, Home, AccountBox } from '@material-ui/icons';
+import React from 'react'
+import AppBar from '@material-ui/core/AppBar'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import TypoGraphy from '@material-ui/core/Typography'
+import { Collections, Home, AccountBox } from '@material-ui/icons'
 
 export default function PrimarySearchAppBar() {
     return (
@@ -30,5 +30,5 @@ export default function PrimarySearchAppBar() {
                 </ListItem>
             </List>
         </AppBar>
-    );
+    )
 }

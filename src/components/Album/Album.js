@@ -35,7 +35,7 @@ export default function Album(props) {
 
     React.useEffect(() => {
         if (props.isActive) {
-            ImageAnimation('.line', '.img', 1)
+            ImageAnimation('.line', '.img', 1, 0)
         }
     }, [props.isActive])
 

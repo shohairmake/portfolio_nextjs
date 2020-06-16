@@ -115,7 +115,7 @@ export default function work({ images }) {
     const [switchImages, setSwitchImages] = React.useState(0)
 
     React.useEffect(() => {
-        ImageAnimation('.line', '.image', 0.95)
+        ImageAnimation('.line', '.image', 0.95, 0)
     }, [switchImages])
 
     const onClickHandler = (num) => (event) => {

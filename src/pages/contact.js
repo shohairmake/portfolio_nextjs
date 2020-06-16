@@ -4,8 +4,9 @@ import Header from '../components/header/Header'
 import Footer from '../components/Footer'
 import SwipeDrawer from '../components/header/SwipeDrawer'
 import contactLogo from '../../static/img/CONTACT.png'
-import { Container, Grid, Hidden, Button } from '@material-ui/core'
+import { Container, Grid, Hidden } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import UserForms from '../components/form/UserForm'
 
 const useStyles = makeStyles((theme) => ({
     heroContent: {
@@ -78,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function contact() {
     const classes = useStyles()
+
     return (
         <>
             <Header>
@@ -109,27 +111,7 @@ export default function contact() {
                                     justify="space-evenly"
                                     alignItems="center"
                                 >
-                                    <Button
-                                        variant="outlined"
-                                        color="default"
-                                        style={{ borderRadius: '30px' }}
-                                    >
-                                        Hair
-                                    </Button>
-                                    <Button
-                                        variant="outlined"
-                                        color="primary"
-                                        style={{ borderRadius: '30px' }}
-                                    >
-                                        Web
-                                    </Button>
-                                    <Button
-                                        variant="outlined"
-                                        color="secondary"
-                                        style={{ borderRadius: '30px' }}
-                                    >
-                                        Other
-                                    </Button>
+                                    <UserForms />
                                 </Grid>
                             </div>
                         </Grid>

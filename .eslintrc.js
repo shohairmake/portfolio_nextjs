@@ -26,4 +26,4 @@ module.exports = {
         'react/display-name': 0,
         'react/jsx-key': 0,
     },
-};
+}

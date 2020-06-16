@@ -1,6 +1,6 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar } from '@material-ui/core';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import { AppBar, Toolbar } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,13 +16,13 @@ const useStyles = makeStyles((theme) => ({
         width: '35%',
         justifyContent: 'flex-end',
     },
-}));
+}))
 
 export default function Header({ children }) {
-    const classes = useStyles();
+    const classes = useStyles()
     return (
         <AppBar position="fixed" className={classes.root}>
             <Toolbar className={classes.navColor}>{children}</Toolbar>
         </AppBar>
-    );
+    )
 }

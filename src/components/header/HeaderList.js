@@ -1,9 +1,9 @@
-import React from 'react';
-import Link from 'next/link';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { Menu, MenuItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Home, BurstMode, Info, Mail } from '@material-ui/icons';
-import UseAnimations from 'react-useanimations';
+import React from 'react'
+import Link from 'next/link'
+import { withStyles, makeStyles } from '@material-ui/core/styles'
+import { Menu, MenuItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import { Home, BurstMode, Info, Mail } from '@material-ui/icons'
+import UseAnimations from 'react-useanimations'
 
 const StyledMenu = withStyles({
     paper: {
@@ -23,7 +23,7 @@ const StyledMenu = withStyles({
         }}
         {...props}
     />
-));
+))
 
 const StyledMenuItem = withStyles((theme) => ({
     root: {
@@ -34,7 +34,7 @@ const StyledMenuItem = withStyles((theme) => ({
             },
         },
     },
-}))(MenuItem);
+}))(MenuItem)
 
 const useStyles = makeStyles({
     menu: {
@@ -58,19 +58,19 @@ const useStyles = makeStyles({
         marginTop: '10px',
         cursor: 'pointer',
     },
-});
+})
 
 export default function CustomizedMenus() {
-    const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const classes = useStyles()
+    const [anchorEl, setAnchorEl] = React.useState(null)
 
     const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+        setAnchorEl(event.currentTarget)
+    }
 
     const handleClose = () => {
-        setAnchorEl(null);
-    };
+        setAnchorEl(null)
+    }
 
     const Content = ({ href = {}, text = {}, icon = {} }) => (
         <Link href={href} passHref>
@@ -79,7 +79,7 @@ export default function CustomizedMenus() {
                 <ListItemText primary={text} />
             </StyledMenuItem>
         </Link>
-    );
+    )
 
     const Icon = ({ href = {}, animationKey = {} }) => (
         <Link href={href} passHref prefetch={false}>
@@ -87,7 +87,7 @@ export default function CustomizedMenus() {
                 <UseAnimations animationKey={animationKey} size={40} />
             </a>
         </Link>
-    );
+    )
 
     return (
         <div className={classes.menu}>
@@ -134,5 +134,5 @@ export default function CustomizedMenus() {
                 animationKey="twitter"
             />
         </div>
-    );
+    )
 }
