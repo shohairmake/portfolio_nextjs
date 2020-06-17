@@ -14,7 +14,6 @@ import LottieBall from '../components/Lottie/ball/LottieBall'
 import workLogo from '../../public/static/img/WORK.png'
 import aboutLogo from '../../public/static/img/ABOUT.png'
 import contactLogo from '../../public/static/img/CONTACT.png'
-import VisibilitySensor from 'react-visibility-sensor'
 
 const svgAnimation = () => {
     anime({
