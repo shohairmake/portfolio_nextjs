@@ -1,8 +1,8 @@
-import hair1 from '../../../static/album/hair1.png'
-import hair2 from '../../../static/album/hair2.png'
-import hair3 from '../../../static/album/hair3.png'
-import hair4 from '../../../static/album/hair4.png'
-import hair5 from '../../../static/album/hair5.png'
+import hair1 from '../../../public/static/album/hair1.png'
+import hair2 from '../../../public/static/album/hair2.png'
+import hair3 from '../../../public/static/album/hair3.png'
+import hair4 from '../../../public/static/album/hair4.png'
+import hair5 from '../../../public/static/album/hair5.png'
 
 export const tileData = [
     {

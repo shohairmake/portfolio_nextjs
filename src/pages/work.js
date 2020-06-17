@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import SwipeDrawer from '../components/header/SwipeDrawer'
 import LottieCamera from '../components/Lottie/camera/camera'
 import LottiePc from '../components/Lottie/pcScreen/pcScreen'
-import workLogo from '../../static/img/WORK.png'
+import workLogo from '../../public/static/img/WORK.png'
 import { Container, Grid, Hidden, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import LottieNoteAndPen from '../components/Lottie/noteAndPen/noteAndPen'
@@ -233,11 +233,14 @@ export default function work({ images }) {
     )
 }
 
-export const getStaticProps = async () => {
+export async function getStaticProps() {
     const key = {
-        headers: { 'X-API-KEY': process.env.API_KEY },
+        headers: { 'X-API-KEY': `153a760c-581f-4ed2-8864-46407e0d8d54` },
     }
-    const res = await fetch(`${process.env.ENDPOINT}/image?limit=30`, key)
+    const res = await fetch(
+        `https://strad.microcms.io/api/v1/image?limit=30`,
+        key
+    )
     const data = await res.json()
 
     return {

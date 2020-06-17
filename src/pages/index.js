@@ -4,16 +4,16 @@ import HeaderList from '../components/header/HeaderList'
 import Header from '../components/header/Header'
 import Footer from '../components/Footer'
 import { makeStyles } from '@material-ui/core/styles'
-import topImg from '../../static/img/uyuniSaltLakemono.jpg'
-import hair from '../../static/img/hair2.jpg'
+import topImg from '../../public/static/img/uyuniSaltLakemono.jpg'
+import hair from '../../public/static/img/hair2.jpg'
 import SwipeDrawer from '../components/header/SwipeDrawer'
 import Album from '../components/Album/Album'
 import Logo from '../components/svg/Logo'
 import anime from 'animejs'
 import LottieBall from '../components/Lottie/ball/LottieBall'
-import workLogo from '../../static/img/WORK.png'
-import aboutLogo from '../../static/img/ABOUT.png'
-import contactLogo from '../../static/img/CONTACT.png'
+import workLogo from '../../public/static/img/WORK.png'
+import aboutLogo from '../../public/static/img/ABOUT.png'
+import contactLogo from '../../public/static/img/CONTACT.png'
 import VisibilitySensor from 'react-visibility-sensor'
 
 const svgAnimation = () => {
@@ -39,6 +39,7 @@ export default function Index(props) {
     const [isActive, setIsActive] = React.useState(false)
 
     React.useEffect(() => {
+        console.log('env', process.env.API_ENDPOINT)
         const scrollAction = () => {
             // console.log(
             //     'documentElement.scrollTop',

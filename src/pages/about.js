@@ -3,7 +3,7 @@ import HeaderList from '../components/header/HeaderList'
 import Header from '../components/header/Header'
 import Footer from '../components/Footer'
 import SwipeDrawer from '../components/header/SwipeDrawer'
-import aboutLogo from '../../static/img/ABOUT.png'
+import aboutLogo from '../../public/static/img/ABOUT.png'
 import {
     Container,
     Grid,
