@@ -104,6 +104,12 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '2.5em',
         paddingBottom: '6em',
     },
+    skillWrapper: {
+        marginBottom: '15em',
+        '@media (max-width:600px)': {
+            marginBottom: '5em',
+        },
+    },
     skillDescription: {
         letterSpacing: '0.3em',
         fontWeight: 400,
@@ -227,7 +233,7 @@ export default function about() {
                                     </Typography>
                                 </Grid>
                             </VisibleContainer>
-                            <Grid style={{ marginBottom: '15em' }}>
+                            <Grid className={classes.skillWrapper}>
                                 <Grid
                                     container
                                     justify="center"

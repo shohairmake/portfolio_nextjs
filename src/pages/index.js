@@ -1,34 +1,20 @@
 import React from 'react'
 import { Container, Grid, Hidden, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import HeaderList from '../components/header/HeaderList'
 import Header from '../components/header/Header'
 import Footer from '../components/Footer'
-import { makeStyles } from '@material-ui/core/styles'
+import ProgramingMan from '../components/Lottie/programingMan/programingMan'
+import TopContainer from '../components/index/TopContainer'
 import topImg from '../../public/static/img/uyuniSaltLakemono.jpg'
-import hair from '../../public/static/img/hair2.jpg'
 import SwipeDrawer from '../components/header/SwipeDrawer'
 import Album from '../components/Album/Album'
-import Logo from '../components/svg/Logo'
-import anime from 'animejs'
-import LottieBall from '../components/Lottie/ball/LottieBall'
+// image file
 import workLogo from '../../public/static/img/WORK.png'
 import aboutLogo from '../../public/static/img/ABOUT.png'
 import contactLogo from '../../public/static/img/CONTACT.png'
 
-const svgAnimation = () => {
-    anime({
-        targets: 'svg path',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        easing: 'easeInOutSine',
-        duration: 1000,
-        fill: ['rgba(0,0,0,0)', '#000'],
-        delay: function (el, i) {
-            return i * 500
-        },
-    })
-}
-
-export default function Index(props) {
+export default function Index() {
     const classes = useStyles()
     const [state, setState] = React.useState({
         fadeInWork: classes.hide,
@@ -36,15 +22,10 @@ export default function Index(props) {
         fadeInContact: classes.hide,
     })
     const [isActive, setIsActive] = React.useState(false)
+    const [isActiveAboutInner, setIsActiveAboutInner] = React.useState(false)
 
     React.useEffect(() => {
-        console.log('env', process.env.API_ENDPOINT)
         const scrollAction = () => {
-            // console.log(
-            //     'documentElement.scrollTop',
-            //     document.documentElement.scrollTop
-            // );
-            // console.log('body.scrollTop', document.body.scrollTop);
             if (
                 document.documentElement.scrollTop > 240 ||
                 document.body.scrollTop > 240
@@ -63,6 +44,7 @@ export default function Index(props) {
                     ...state,
                     fadeInAbout: `${classes.imgLogo} ${classes.fadeInDown}`,
                 })
+                setIsActiveAboutInner(true)
             }
             if (
                 document.documentElement.scrollTop > 1800 ||
@@ -80,10 +62,6 @@ export default function Index(props) {
         }
     })
 
-    React.useEffect(() => {
-        svgAnimation()
-    }, [])
-
     return (
         <>
             <Header>
@@ -95,38 +73,7 @@ export default function Index(props) {
                 </Hidden>
             </Header>
             <main>
-                <div className={classes.heroContent}>
-                    <div className={classes.HeroInner}>
-                        <Grid className={classes.topUnderCard}>
-                            <Grid className={classes.topSecondUnderCard}>
-                                <Grid className={classes.topCard}>
-                                    <Logo
-                                        className={classes.iconLogo}
-                                        width={140}
-                                        height={60}
-                                    />
-                                    <LottieBall />
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                        <Hidden xsDown>
-                            <Typography
-                                variant="h2"
-                                className={classes.textAnime}
-                            >
-                                Hair and Web designer
-                            </Typography>
-                        </Hidden>
-                        <Hidden smUp>
-                            <Typography
-                                variant="h2"
-                                className={classes.spTextAnime}
-                            >
-                                Hair and Web designer
-                            </Typography>
-                        </Hidden>
-                    </div>
-                </div>
+                <TopContainer />
                 <Container>
                     <Grid className={classes.gap}>
                         <Grid>
@@ -148,7 +95,36 @@ export default function Index(props) {
                         </Grid>
                     </Grid>
                     <Grid className={classes.parallax}>
-                        <Grid className={classes.parallaxInner} />
+                        <Grid
+                            container
+                            alignContent="space-between"
+                            className={classes.parallaxInner}
+                        >
+                            <Grid
+                                className={
+                                    isActiveAboutInner
+                                        ? classes.about
+                                        : classes.hide
+                                }
+                            >
+                                <Typography>
+                                    What is the Hair and Web designer?
+                                    <br />
+                                    How do that work ??
+                                    <br />
+                                    Let&apos;s go to the contact page →
+                                </Typography>
+                            </Grid>
+                            <Grid
+                                className={
+                                    isActiveAboutInner
+                                        ? classes.lottie
+                                        : classes.hide
+                                }
+                            >
+                                <ProgramingMan />
+                            </Grid>
+                        </Grid>
                     </Grid>
                     <Grid className={classes.gap}>
                         <Grid>
@@ -169,39 +145,28 @@ export default function Index(props) {
     )
 }
 
-const textAnime = {
-    textAlign: 'end',
-    paddingRight: '30px',
-    fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    letterSpacing: '0.1em',
-    animation: '$tilt-in-tr 5s cubic-bezier(0.250, 0.460, 0.450, 0.940)',
-}
-
 const useStyles = makeStyles((theme) => ({
-    heroContent: {
-        backgroundColor: theme.palette.background.default,
-        backgroundImage: `url(${topImg})`,
-        padding: theme.spacing(8, 0, 6),
-        minHeight: '800px',
-        width: '100%',
-        backgroundAttachment: 'fixed',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        opacity: '0.8',
-        overflow: 'hidden',
-        // animation: '$fadeIn ease-in-out',
-    },
-    HeroInner: {
-        padding: '100px 0',
-        width: '100%',
-        height: '100%',
-    },
     cardGrid: {
         paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
+    },
+    about: {
+        marginLeft: '1em',
+        animation:
+            '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1s',
+        '& p': {
+            fontSize: '1.3rem',
+            fontWeight: 900,
+            lineHeight: 3.5,
+            color: '#525252',
+            letterSpacing: '0.3em',
+        },
+    },
+    lottie: {
+        width: '30%',
+        marginTop: '10em',
+        animation:
+            '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.2s',
     },
     gap: {
         width: '100%',
@@ -221,44 +186,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage: `url(${topImg})`,
         minHeight: '400px',
     },
-    topUnderCard: {
-        height: '400px',
-        width: '300px',
-        backgroundColor: '#fff',
-        margin: '0 auto',
-        boxShadow: '0 0 8px #696969',
-        borderRadius: '10px',
-        position: 'relative',
-    },
-    topSecondUnderCard: {
-        height: '100%',
-        width: '100%',
-        backgroundColor: '#fff',
-        margin: '0 auto',
-        transform: 'rotate(20deg)',
-        overflow: 'hidden',
-        borderRadius: '10px',
-        position: 'relative',
-        backgroundImage: `url(${hair})`,
-        backgroundSize: 'cover',
-        animation: '$fadeIn ease-in-out 2s',
-    },
-    topCard: {
-        height: '85%',
-        width: '80%',
-        backgroundColor: '#fff',
-        position: 'absolute',
-        transform: 'rotate(-20deg) translate(-22%,-60%)',
-        top: '50%',
-        left: '50%',
-        boxShadow: '0 0 8px #696969',
-        animation: '$fadeIn ease-in-out 5s',
-    },
-    iconLogo: {
-        position: 'absolute',
-        top: '20%',
-        left: '50%',
-    },
     imgLogo: {
         width: '14em',
         height: 'auto',
@@ -272,16 +199,6 @@ const useStyles = makeStyles((theme) => ({
         '@media (max-width:600px)': {
             width: '15em',
         },
-    },
-    textAnime: {
-        ...textAnime,
-        fontSize: '1em',
-        marginTop: '-230px',
-    },
-    spTextAnime: {
-        ...textAnime,
-        fontSize: '1.2em',
-        marginTop: '80px',
     },
     fadeInDown: {
         animation:
@@ -298,29 +215,6 @@ const useStyles = makeStyles((theme) => ({
         '100%': {
             transform: 'translateY(0)',
             opacity: 0.7,
-        },
-    },
-    '@keyframes fadeIn': {
-        from: {
-            opacity: '0',
-        },
-        to: {
-            opacity: '1',
-        },
-    },
-    '@keyframes tilt-in-tr': {
-        '0%': {
-            opacity: '0',
-        },
-        '50%': {
-            transform:
-                'rotateY(-3deg) rotateX(2deg) translate(25px, -25px) skew(-1deg, -1deg)',
-            opacity: '0',
-        },
-        '100%': {
-            transform:
-                'rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg)',
-            opacity: '1',
         },
     },
 }))

@@ -49,7 +49,6 @@ export const ImageAnimation = (line, element, lineHeight, delay) => {
 
 export const ImageAnimationWrapper = ({ color, width, height, children }) => (
     <div
-        className
         style={{
             position: 'relative',
             overflow: 'hidden',
@@ -85,3 +84,16 @@ export const VisibleContainer = ({ state, setState, children, animeClass }) => (
         <div className={state ? animeClass : ''}>{children}</div>
     </VizSensor>
 )
+
+export const svgAnimation = () => {
+    anime({
+        targets: '.svg-icon .pass',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        easing: 'easeInOutSine',
+        duration: 1000,
+        fill: ['rgba(0,0,0,0)', '#000'],
+        delay: function (el, i) {
+            return i * 500
+        },
+    })
+}

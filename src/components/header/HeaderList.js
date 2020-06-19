@@ -1,15 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
-import { withStyles, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { Menu, MenuItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { Home, BurstMode, Info, Mail } from '@material-ui/icons'
 import UseAnimations from 'react-useanimations'
 
-const StyledMenu = withStyles({
-    paper: {
-        border: '1px solid #d3d4d5',
-    },
-})((props) => (
+const StyledMenu = (props) => (
     <Menu
         elevation={0}
         getContentAnchorEl={null}
@@ -23,18 +19,7 @@ const StyledMenu = withStyles({
         }}
         {...props}
     />
-))
-
-const StyledMenuItem = withStyles((theme) => ({
-    root: {
-        '&:focus': {
-            backgroundColor: theme.palette.primary.main,
-            '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-                color: theme.palette.common.white,
-            },
-        },
-    },
-}))(MenuItem)
+)
 
 const useStyles = makeStyles({
     menu: {
@@ -61,23 +46,25 @@ const useStyles = makeStyles({
 })
 
 export default function CustomizedMenus() {
+    const initAnchorEl = null
+
     const classes = useStyles()
-    const [anchorEl, setAnchorEl] = React.useState(null)
+    const [anchorEl, setAnchorEl] = React.useState(initAnchorEl)
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
     }
 
     const handleClose = () => {
-        setAnchorEl(null)
+        setAnchorEl(initAnchorEl)
     }
 
     const Content = ({ href = {}, text = {}, icon = {} }) => (
         <Link href={href} passHref>
-            <StyledMenuItem onClick={handleClose}>
+            <MenuItem onClick={handleClose}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
-            </StyledMenuItem>
+            </MenuItem>
         </Link>
     )
 
@@ -100,26 +87,29 @@ export default function CustomizedMenus() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <Content
-                    href="/"
-                    text="Home"
-                    icon={<Home fontSize="small" />}
-                />
-                <Content
-                    href="/work"
-                    text="Work"
-                    icon={<BurstMode fontSize="small" />}
-                />
-                <Content
-                    href="/about"
-                    text="About"
-                    icon={<Info fontSize="small" />}
-                />
-                <Content
-                    href="/contact"
-                    text="Contact"
-                    icon={<Mail fontSize="small" />}
-                />
+                {/* Use div as buffer for ref */}
+                <div>
+                    <Content
+                        href="/"
+                        text="Home"
+                        icon={<Home fontSize="small" />}
+                    />
+                    <Content
+                        href="/work"
+                        text="Work"
+                        icon={<BurstMode fontSize="small" />}
+                    />
+                    <Content
+                        href="/about"
+                        text="About"
+                        icon={<Info fontSize="small" />}
+                    />
+                    <Content
+                        href="/contact"
+                        text="Contact"
+                        icon={<Mail fontSize="small" />}
+                    />
+                </div>
             </StyledMenu>
             <Icon
                 href="https://www.instagram.com/shotanaka.hair/"
