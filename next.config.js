@@ -1,2 +1,10 @@
 const withImages = require('next-images')
-module.exports = withImages()
+require('dotenv').config()
+
+module.exports = withImages({
+    env: {
+        API_KEY: process.env.API_KEY,
+        API_END_POINT: process.env.API_END_POINT,
+        WRITE_API_KEY: process.env.WRITE_API_KEY,
+    },
+})

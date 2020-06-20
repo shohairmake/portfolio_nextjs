@@ -14,7 +14,7 @@ import workLogo from '../../public/static/img/WORK.png'
 import aboutLogo from '../../public/static/img/ABOUT.png'
 import contactLogo from '../../public/static/img/CONTACT.png'
 
-export default function Index() {
+export default function Index(props) {
     const classes = useStyles()
     const [state, setState] = React.useState({
         fadeInWork: classes.hide,
@@ -97,7 +97,7 @@ export default function Index() {
                     <Grid className={classes.parallax}>
                         <Grid
                             container
-                            alignContent="space-between"
+                            justify="space-between"
                             className={classes.parallaxInner}
                         >
                             <Grid
@@ -151,12 +151,13 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(8),
     },
     about: {
-        marginLeft: '1em',
+        marginLeft: '3em',
+        marginTop: '3em',
         animation:
             '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1s',
         '& p': {
             fontSize: '1.3rem',
-            fontWeight: 900,
+            fontWeight: 400,
             lineHeight: 3.5,
             color: '#525252',
             letterSpacing: '0.3em',

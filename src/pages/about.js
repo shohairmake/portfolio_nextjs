@@ -113,6 +113,9 @@ const useStyles = makeStyles((theme) => ({
     skillDescription: {
         letterSpacing: '0.3em',
         fontWeight: 400,
+        '@media (max-width:600px)': {
+            fontSize: '0.7em',
+        },
     },
     fadeIn: {
         animation: '$fadeIn 2s ease-in-out',

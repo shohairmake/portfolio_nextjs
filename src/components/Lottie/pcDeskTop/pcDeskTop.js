@@ -10,6 +10,9 @@ const useStyle = makeStyles({
         '& h6': {
             fontWeight: 400,
             letterSpacing: '0.1em',
+            '@media (max-width:600px)': {
+                fontSize: '0.7em',
+            },
         },
         '& h5': {
             letterSpacing: '0.5em',

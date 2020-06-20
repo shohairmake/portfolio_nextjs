@@ -58314,7 +58314,7 @@ var theme = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["createMuiThem
       light: '#51d1e1'
     },
     secondary: {
-      main: '#81c784'
+      main: '#eeccef'
     },
     text: {
       primary: '#212121',
@@ -58342,10 +58342,7 @@ theme.typography.h5 = {
   }
 };
 theme.typography.h6 = {
-  fontSize: '1.25rem',
-  '@media (max-width:600px)': {
-    fontSize: '0.7rem'
-  }
+  fontSize: '1.25rem'
 };
 /* harmony default export */ __webpack_exports__["default"] = (theme);
 

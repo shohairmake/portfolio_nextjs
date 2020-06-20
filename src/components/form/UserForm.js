@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FormUserDetails } from './FormUserDetails'
-import { FormPersonalDetails } from './FormPersonalDetails'
 import { Confirm } from './Confirm'
 import { Success } from './Success'
 
@@ -10,12 +9,16 @@ export default function UserForm() {
         firstName: '',
         lastName: '',
         email: '',
-        occupation: '',
-        city: '',
-        bio: '',
+        message: '',
     })
     const nextStep = () => setStep((prev) => prev + 1)
     const prevStep = () => setStep((prev) => prev - 1)
+
+    // ページ遷移後にページトップまで移動
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [step])
+
     switch (step) {
         case 1:
             return (
@@ -26,15 +29,6 @@ export default function UserForm() {
                 />
             )
         case 2:
-            return (
-                <FormPersonalDetails
-                    formData={formData}
-                    setFormData={setFormData}
-                    nextStep={nextStep}
-                    prevStep={prevStep}
-                />
-            )
-        case 3:
             return (
                 <Confirm
                     formData={formData}

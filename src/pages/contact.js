@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#f8f8f8',
         width: '100%',
         height: '100%',
-        minHeight: '1000px',
         borderRadius: '20px',
         boxShadow: '1px 1px 5px #fff',
     },

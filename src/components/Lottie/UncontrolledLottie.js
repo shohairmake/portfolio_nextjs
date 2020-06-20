@@ -4,24 +4,19 @@ import animationData from './lf30_editor_ImQRx0.json'
 import one from './temporary/instagramBlue.json'
 import three from './temporary/newspaperAnimation.json'
 import seven from './temporary/postbox.json'
-import eight from './temporary/programingMan.json'
-import nine from './temporary/mail.json'
 
 export default function UncontrolledLottie({ className }) {
     const defaultOptions = {
         loop: true,
         autoplay: true,
-        animationData: eight,
+        animationData: three,
         rendererSettings: {
             preserveAspectRatio: 'xMidYMid slice',
         },
     }
 
     return (
-        <div
-            className={className || 'lottie-icon'}
-            style={{ filter: 'grayscale(90%)' }}
-        >
+        <div className={className || 'lottie-icon'}>
             <Lottie
                 options={defaultOptions}
                 height={250}

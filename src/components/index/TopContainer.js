@@ -19,7 +19,7 @@ export default function TopContainer() {
         if (window.innerWidth < 600) {
             setIsMaxWith(true)
         }
-        svgAnimation()
+        // svgAnimation()
         ImageAnimation('.line', '.text', 1, 1000)
     }, [])
 
@@ -53,7 +53,7 @@ export default function TopContainer() {
                     justify="flex-end"
                     className={classes.nameWrapper}
                 >
-                    {/* <ImageAnimationWrapper
+                    <ImageAnimationWrapper
                         width={isMaxWith ? '60%' : '30%'}
                         height="100%"
                         color="#d3d3d3"
@@ -64,7 +64,7 @@ export default function TopContainer() {
                         >
                             S H O T A N A K A
                         </Typography>
-                    </ImageAnimationWrapper> */}
+                    </ImageAnimationWrapper>
                 </Grid>
             </div>
         </div>

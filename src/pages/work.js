@@ -235,12 +235,9 @@ export default function work({ images }) {
 
 export async function getStaticProps() {
     const key = {
-        headers: { 'X-API-KEY': `153a760c-581f-4ed2-8864-46407e0d8d54` },
+        headers: { 'X-API-KEY': process.env.API_KEY },
     }
-    const res = await fetch(
-        `https://strad.microcms.io/api/v1/image?limit=30`,
-        key
-    )
+    const res = await fetch(`${process.env.API_END_POINT}/image?limit=30`, key)
     const data = await res.json()
 
     return {
