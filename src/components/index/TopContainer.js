@@ -19,7 +19,7 @@ export default function TopContainer() {
         if (window.innerWidth < 600) {
             setIsMaxWith(true)
         }
-        // svgAnimation()
+        svgAnimation()
         ImageAnimation('.line', '.text', 1, 1000)
     }, [])
 

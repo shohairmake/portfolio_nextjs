@@ -1,6 +1,6 @@
-import React from 'react';
-import Lottie from 'react-lottie';
-import camera from './camera.json';
+import React from 'react'
+import Lottie from 'react-lottie'
+import camera from './camera.json'
 
 export default function LottieCamera() {
     const defaultOptions = {
@@ -10,7 +10,7 @@ export default function LottieCamera() {
         rendererSettings: {
             preserveAspectRatio: 'xMidYMid slice',
         },
-    };
+    }
 
     return (
         <div>
@@ -21,5 +21,5 @@ export default function LottieCamera() {
                 clickToPause={true}
             />
         </div>
-    );
+    )
 }

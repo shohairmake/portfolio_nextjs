@@ -1,6 +1,6 @@
-import React from 'react';
-import Lottie from 'react-lottie';
-import screenAndTriangle from './screenAndTriangle.json';
+import React from 'react'
+import Lottie from 'react-lottie'
+import screenAndTriangle from './screenAndTriangle.json'
 
 export default function pcScreen() {
     const defaultOptions = {
@@ -10,7 +10,7 @@ export default function pcScreen() {
         rendererSettings: {
             preserveAspectRatio: 'xMidYMid slice',
         },
-    };
+    }
 
     return (
         <div>
@@ -21,5 +21,5 @@ export default function pcScreen() {
                 clickToPause={true}
             />
         </div>
-    );
+    )
 }

@@ -4,13 +4,7 @@ import Header from '../components/header/Header'
 import Footer from '../components/Footer'
 import SwipeDrawer from '../components/header/SwipeDrawer'
 import aboutLogo from '../../public/static/img/ABOUT.png'
-import {
-    Container,
-    Grid,
-    Hidden,
-    Typography,
-    TextField,
-} from '@material-ui/core'
+import { Container, Grid, Hidden, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import LottiePcDeskTop from '../components/Lottie/pcDeskTop/pcDeskTop'
 import CoffeeAndMan from '../components/Lottie/coffeeAndMan/coffeeAndMan'

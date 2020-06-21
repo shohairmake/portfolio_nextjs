@@ -4,17 +4,20 @@ import { makeStyles } from '@material-ui/core/styles'
 import HeaderList from '../components/header/HeaderList'
 import Header from '../components/header/Header'
 import Footer from '../components/Footer'
-import ProgramingMan from '../components/Lottie/programingMan/programingMan'
 import TopContainer from '../components/index/TopContainer'
-import topImg from '../../public/static/img/uyuniSaltLakemono.jpg'
 import SwipeDrawer from '../components/header/SwipeDrawer'
-import Album from '../components/Album/Album'
+import Album from '../components/index/Album/Album'
+import AboutContainer from '../components/index/AboutContainer'
+import LottiePostBox from '../components/Lottie/postbox/postbox'
+import fetch from 'isomorphic-unfetch'
+import { VisibleContainer } from '../components/helper/animationHelper'
 // image file
+import topImg from '../../public/static/img/uyuniSaltLakemono.jpg'
 import workLogo from '../../public/static/img/WORK.png'
 import aboutLogo from '../../public/static/img/ABOUT.png'
 import contactLogo from '../../public/static/img/CONTACT.png'
 
-export default function Index(props) {
+export default function Index({ images }) {
     const classes = useStyles()
     const [state, setState] = React.useState({
         fadeInWork: classes.hide,
@@ -23,8 +26,14 @@ export default function Index(props) {
     })
     const [isActive, setIsActive] = React.useState(false)
     const [isActiveAboutInner, setIsActiveAboutInner] = React.useState(false)
+    const [isActiveContact, setIsActiveContact] = React.useState(false)
+
+    const [isMaxWidth, setIsMaxWith] = React.useState(false)
 
     React.useEffect(() => {
+        if (window.innerWidth < 600) {
+            setIsMaxWith(true)
+        }
         const scrollAction = () => {
             if (
                 document.documentElement.scrollTop > 240 ||
@@ -34,7 +43,6 @@ export default function Index(props) {
                     ...state,
                     fadeInWork: `${classes.imgLogo} ${classes.fadeInDown}`,
                 })
-                setIsActive(true)
             }
             if (
                 document.documentElement.scrollTop > 1200 ||
@@ -44,7 +52,6 @@ export default function Index(props) {
                     ...state,
                     fadeInAbout: `${classes.imgLogo} ${classes.fadeInDown}`,
                 })
-                setIsActiveAboutInner(true)
             }
             if (
                 document.documentElement.scrollTop > 1800 ||
@@ -84,7 +91,9 @@ export default function Index(props) {
                             />
                         </Grid>
                     </Grid>
-                    <Album isActive={isActive} />
+                    <VisibleContainer state={isActive} setState={setIsActive}>
+                        <Album isActive={isActive} images={images} />
+                    </VisibleContainer>
                     <Grid className={classes.gap}>
                         <Grid>
                             <img
@@ -94,37 +103,15 @@ export default function Index(props) {
                             />
                         </Grid>
                     </Grid>
-                    <Grid className={classes.parallax}>
-                        <Grid
-                            container
-                            justify="space-between"
-                            className={classes.parallaxInner}
+                    <Grid className={classes.container}>
+                        <VisibleContainer
+                            state={isActiveAboutInner}
+                            setState={setIsActiveAboutInner}
                         >
-                            <Grid
-                                className={
-                                    isActiveAboutInner
-                                        ? classes.about
-                                        : classes.hide
-                                }
-                            >
-                                <Typography>
-                                    What is the Hair and Web designer?
-                                    <br />
-                                    How do that work ??
-                                    <br />
-                                    Let&apos;s go to the contact page →
-                                </Typography>
-                            </Grid>
-                            <Grid
-                                className={
-                                    isActiveAboutInner
-                                        ? classes.lottie
-                                        : classes.hide
-                                }
-                            >
-                                <ProgramingMan />
-                            </Grid>
-                        </Grid>
+                            <AboutContainer
+                                isActiveAboutInner={isActiveAboutInner}
+                            />
+                        </VisibleContainer>
                     </Grid>
                     <Grid className={classes.gap}>
                         <Grid>
@@ -135,8 +122,18 @@ export default function Index(props) {
                             />
                         </Grid>
                     </Grid>
-                    <Grid className={classes.parallax}>
-                        <Grid className={classes.parallaxInner} />
+                    <Grid className={classes.container}>
+                        <Grid className={classes.inner}>
+                            <VisibleContainer
+                                state={isActiveContact}
+                                setState={setIsActiveContact}
+                            >
+                                <LottiePostBox
+                                    isMaxWidth={isMaxWidth}
+                                    isActiveContact={isActiveContact}
+                                />
+                            </VisibleContainer>
+                        </Grid>
                     </Grid>
                 </Container>
             </main>
@@ -150,25 +147,6 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
     },
-    about: {
-        marginLeft: '3em',
-        marginTop: '3em',
-        animation:
-            '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1s',
-        '& p': {
-            fontSize: '1.3rem',
-            fontWeight: 400,
-            lineHeight: 3.5,
-            color: '#525252',
-            letterSpacing: '0.3em',
-        },
-    },
-    lottie: {
-        width: '30%',
-        marginTop: '10em',
-        animation:
-            '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 1.2s',
-    },
     gap: {
         width: '100%',
         height: '200px',
@@ -179,11 +157,11 @@ const useStyles = makeStyles((theme) => ({
             verticalAlign: 'middle',
         },
     },
-    parallax: {
+    container: {
         width: '100%',
         height: 'auto',
     },
-    parallaxInner: {
+    inner: {
         backgroundImage: `url(${topImg})`,
         minHeight: '400px',
     },
@@ -219,3 +197,17 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }))
+
+export async function getStaticProps() {
+    const key = {
+        headers: { 'X-API-KEY': process.env.API_KEY },
+    }
+    const res = await fetch(`${process.env.API_END_POINT}/image?limit=30`, key)
+    const data = await res.json()
+
+    return {
+        props: {
+            images: data.contents,
+        },
+    }
+}

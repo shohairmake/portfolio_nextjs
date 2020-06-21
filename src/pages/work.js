@@ -12,105 +12,6 @@ import LottieNoteAndPen from '../components/Lottie/noteAndPen/noteAndPen'
 import fetch from 'isomorphic-unfetch'
 import { ImageAnimation } from '../components/helper/animationHelper'
 
-const useStyles = makeStyles((theme) => ({
-    heroContent: {
-        padding: theme.spacing(8, 0, 6),
-        minHeight: '800px',
-        width: '100%',
-        background: 'linear-gradient(to right, #ddd6f3, #faaca8)',
-        overflow: 'hidden',
-    },
-    mainContent: {
-        backgroundColor: '#f8f8f8',
-        width: '100%',
-        height: '100%',
-        minHeight: '1000px',
-        borderRadius: '20px',
-        boxShadow: '1px 1px 5px #fff',
-    },
-    gap: {
-        width: '100%',
-        height: '13rem',
-        display: 'table',
-        textAlign: 'center',
-        '@media (max-width:600px)': {
-            height: '8rem',
-        },
-        '& div': {
-            display: 'table-cell',
-            verticalAlign: 'middle',
-            '& img': {
-                zIndex: 1,
-                position: 'relative',
-                opacity: 0.7,
-                animation:
-                    '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
-            },
-            '& hr': {
-                width: '100%',
-                height: '1.5em',
-                backgroundColor: '#fff',
-                borderWidth: 'inherit',
-                borderStyle: 'none',
-                transform: 'translateY(-60px)',
-                zIndex: 0,
-                opacity: 0.7,
-                '@media (max-width:600px)': {
-                    height: '1em',
-                    transform: 'translateY(-50px)',
-                },
-            },
-        },
-    },
-    imgLogo: {
-        width: '14em',
-        height: 'auto',
-        '@media (max-width:600px)': {
-            width: '11em',
-        },
-    },
-    images: {
-        width: '100%',
-        height: '100%',
-        marginTop: '100px',
-        marginBottom: '50px',
-        paddingBottom: '100px',
-        overflow: 'hidden',
-    },
-    image: {
-        margin: '10px 0',
-    },
-    line: {
-        opacity: 0,
-        position: 'absolute',
-        left: 0,
-        height: '100%',
-        width: '5px',
-        backgroundColor: '#9e9e9e',
-        transformOrigin: '0 50%',
-        zIndex: 100,
-    },
-    button: {
-        borderRadius: '30px',
-        border: '2px solid',
-        fontSize: '1em',
-        '@media (max-width:600px)': {
-            fontSize: '0.875em',
-            transform: 'scale(0.8)',
-        },
-    },
-    '@keyframes fade-in-top': {
-        '0%': {
-            transform: 'translateY(-30px)',
-            opacity: 0,
-        },
-        '100%': {
-            transform: 'translateY(0)',
-            opacity: 0.7,
-        },
-    },
-}))
-
 export default function work({ images }) {
     const [switchImages, setSwitchImages] = React.useState(0)
 
@@ -232,6 +133,105 @@ export default function work({ images }) {
         </>
     )
 }
+
+const useStyles = makeStyles((theme) => ({
+    heroContent: {
+        padding: theme.spacing(8, 0, 6),
+        minHeight: '800px',
+        width: '100%',
+        background: 'linear-gradient(to right, #ddd6f3, #faaca8)',
+        overflow: 'hidden',
+    },
+    mainContent: {
+        backgroundColor: '#f8f8f8',
+        width: '100%',
+        height: '100%',
+        minHeight: '1000px',
+        borderRadius: '20px',
+        boxShadow: '1px 1px 5px #fff',
+    },
+    gap: {
+        width: '100%',
+        height: '13rem',
+        display: 'table',
+        textAlign: 'center',
+        '@media (max-width:600px)': {
+            height: '8rem',
+        },
+        '& div': {
+            display: 'table-cell',
+            verticalAlign: 'middle',
+            '& img': {
+                zIndex: 1,
+                position: 'relative',
+                opacity: 0.7,
+                animation:
+                    '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
+            },
+            '& hr': {
+                width: '100%',
+                height: '1.5em',
+                backgroundColor: '#fff',
+                borderWidth: 'inherit',
+                borderStyle: 'none',
+                transform: 'translateY(-60px)',
+                zIndex: 0,
+                opacity: 0.7,
+                '@media (max-width:600px)': {
+                    height: '1em',
+                    transform: 'translateY(-50px)',
+                },
+            },
+        },
+    },
+    imgLogo: {
+        width: '14em',
+        height: 'auto',
+        '@media (max-width:600px)': {
+            width: '11em',
+        },
+    },
+    images: {
+        width: '100%',
+        height: '100%',
+        marginTop: '100px',
+        marginBottom: '50px',
+        paddingBottom: '100px',
+        overflow: 'hidden',
+    },
+    image: {
+        margin: '10px 0',
+    },
+    line: {
+        opacity: 0,
+        position: 'absolute',
+        left: 0,
+        height: '100%',
+        width: '5px',
+        backgroundColor: '#9e9e9e',
+        transformOrigin: '0 50%',
+        zIndex: 100,
+    },
+    button: {
+        borderRadius: '30px',
+        border: '2px solid',
+        fontSize: '1em',
+        '@media (max-width:600px)': {
+            fontSize: '0.875em',
+            transform: 'scale(0.8)',
+        },
+    },
+    '@keyframes fade-in-top': {
+        '0%': {
+            transform: 'translateY(-30px)',
+            opacity: 0,
+        },
+        '100%': {
+            transform: 'translateY(0)',
+            opacity: 0.7,
+        },
+    },
+}))
 
 export async function getStaticProps() {
     const key = {

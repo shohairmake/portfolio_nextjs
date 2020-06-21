@@ -3,7 +3,6 @@ import Lottie from 'react-lottie'
 import animationData from './lf30_editor_ImQRx0.json'
 import one from './temporary/instagramBlue.json'
 import three from './temporary/newspaperAnimation.json'
-import seven from './temporary/postbox.json'
 
 export default function UncontrolledLottie({ className }) {
     const defaultOptions = {
@@ -16,7 +15,10 @@ export default function UncontrolledLottie({ className }) {
     }
 
     return (
-        <div className={className || 'lottie-icon'}>
+        <div
+            className={className || 'lottie-icon'}
+            style={{ filter: 'grayscale(70%)' }}
+        >
             <Lottie
                 options={defaultOptions}
                 height={250}
