@@ -30,7 +30,7 @@ const useStyles = makeStyles({
         },
         '100%': {
             transform: 'translateY(0)',
-            opacity: 0.7,
+            opacity: 1,
         },
     },
 })

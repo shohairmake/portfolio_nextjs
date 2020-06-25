@@ -13,6 +13,208 @@ import {
     ImageAnimationWrapper,
     VisibleContainer,
 } from '../components/helper/animationHelper'
+import { motion } from 'framer-motion'
+
+const skills = [
+    'JavaScript',
+    'TypeScript',
+    'React.js',
+    'Vue.js',
+    'Next.js',
+    'Gatsby.js',
+    'Node.js',
+    'Redux',
+    'Flutter',
+    'WordPress etc.',
+]
+
+export default function about() {
+    const [isVisible, setIsVisible] = React.useState(false)
+    const [isVisibleSkills, setIsVisibleSkills] = React.useState(false)
+    const [isVisibleCoffeeMan, setIsVisibleCoffeeMan] = React.useState(false)
+    const classes = useStyles()
+    const list = {
+        visible: {
+            opacity: 1,
+            transition: {
+                when: 'beforeChildren',
+                staggerChildren: 0.3,
+            },
+        },
+        hidden: {
+            opacity: 0,
+            transition: {
+                when: 'afterChildren',
+            },
+        },
+    }
+
+    const item = {
+        visible: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, x: -100 },
+    }
+
+    React.useEffect(() => {
+        ImageAnimation('.line', '.text', 1, 1000)
+        console.log(isVisibleSkills)
+    }, [])
+    return (
+        <>
+            <Header>
+                <Hidden smUp>
+                    <SwipeDrawer />
+                </Hidden>
+                <Hidden xsDown>
+                    <HeaderList />
+                </Hidden>
+            </Header>
+            <main>
+                <motion.div anime className={classes.heroContent}>
+                    <Grid className={classes.gap}>
+                        <Grid>
+                            <img
+                                className={classes.imgLogo}
+                                src={aboutLogo}
+                                alt="about_logo"
+                            />
+                            <hr />
+                        </Grid>
+                    </Grid>
+                    <Container>
+                        <Grid className={classes.mainContent}>
+                            <Grid className={classes.heroText}>
+                                <Typography variant={'h2'}>
+                                    shaping your Identity <br />
+                                    with design.
+                                </Typography>
+                                <ImageAnimationWrapper
+                                    width="70%"
+                                    height="100%"
+                                    color="#000"
+                                >
+                                    <Typography
+                                        variant={'h5'}
+                                        className={'text'}
+                                        noWrap={true}
+                                    >
+                                        アイデンティティをデザインする
+                                    </Typography>
+                                </ImageAnimationWrapper>
+                            </Grid>
+                            <Grid
+                                container
+                                justify="flex-end"
+                                alignItems="center"
+                            >
+                                <LottiePcDeskTop />
+                            </Grid>
+                            <VisibleContainer
+                                state={isVisible}
+                                setState={setIsVisible}
+                                animeClass={classes.fadeIn}
+                            >
+                                <Grid>
+                                    <Typography
+                                        variant={'h5'}
+                                        className={classes.description}
+                                    >
+                                        美容師、ヘアメイク、エンジニア
+                                        <br />
+                                        全て 探究心が必要な職業
+                                        <br />
+                                        日々、自己研鑽が必要な職業
+                                        <br />
+                                        この職人気質な世界に僕は魅了された
+                                        <br />
+                                        異色のパラレルキャリア
+                                        <br />
+                                        貴方の仕事のお手伝いをさせて下さい。
+                                        <br />
+                                    </Typography>
+                                </Grid>
+                            </VisibleContainer>
+                            <Grid className={classes.skillWrapper}>
+                                <Grid
+                                    container
+                                    justify="center"
+                                    alignItems="center"
+                                    style={{ marginBottom: '2em' }}
+                                >
+                                    <VisibleContainer
+                                        state={isVisibleSkills}
+                                        setState={setIsVisibleSkills}
+                                    >
+                                        <Typography variant={'h2'}>
+                                            SKILL
+                                        </Typography>
+                                    </VisibleContainer>
+                                </Grid>
+                                <Grid
+                                    container
+                                    direction="column"
+                                    justify="center"
+                                    alignItems="center"
+                                >
+                                    {isVisibleSkills ? (
+                                        <motion.div
+                                            initial="hidden"
+                                            animate="visible"
+                                            variants={list}
+                                        >
+                                            {skills.map((skill) => (
+                                                <Typography
+                                                    variant={'h6'}
+                                                    align="center"
+                                                    className={
+                                                        classes.skillDescription
+                                                    }
+                                                >
+                                                    <motion.div
+                                                        variants={item}
+                                                        key={item}
+                                                    >
+                                                        {skill}
+                                                    </motion.div>
+                                                </Typography>
+                                            ))}
+                                        </motion.div>
+                                    ) : (
+                                        ''
+                                    )}
+                                </Grid>
+                            </Grid>
+                            <Grid>
+                                <VisibleContainer
+                                    state={isVisibleCoffeeMan}
+                                    setState={setIsVisibleCoffeeMan}
+                                >
+                                    <Typography
+                                        variant={'h5'}
+                                        className={classes.description}
+                                    >
+                                        基本的にはフロントエンドエンジニア
+                                        <br />
+                                        ですが、容貌次第でなんでもやります。
+                                        <br />
+                                        提案力、コミュニケーション能力には
+                                        <br />
+                                        自信があります。
+                                        <br />
+                                        一度、ご相談ください。
+                                    </Typography>
+                                </VisibleContainer>
+                            </Grid>
+                            <CoffeeAndMan
+                                isVisibleCoffeeMan={isVisibleCoffeeMan}
+                            />
+                        </Grid>
+                    </Container>
+                </motion.div>
+            </main>
+            <Footer description="Hair and Web designer" />
+        </>
+    )
+}
 
 const useStyles = makeStyles((theme) => ({
     heroContent: {
@@ -99,7 +301,7 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: '6em',
     },
     skillWrapper: {
-        marginBottom: '15em',
+        marginBottom: '10em',
         '@media (max-width:600px)': {
             marginBottom: '5em',
         },
@@ -107,6 +309,7 @@ const useStyles = makeStyles((theme) => ({
     skillDescription: {
         letterSpacing: '0.3em',
         fontWeight: 400,
+        lineHeight: '2.5em',
         '@media (max-width:600px)': {
             fontSize: '0.7em',
         },
@@ -147,147 +350,3 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }))
-
-export default function about() {
-    const [isVisible, setIsVisible] = React.useState(false)
-    const classes = useStyles()
-
-    React.useEffect(() => {
-        ImageAnimation('.line', '.text', 1, 1000)
-    }, [])
-    return (
-        <>
-            <Header>
-                <Hidden smUp>
-                    <SwipeDrawer />
-                </Hidden>
-                <Hidden xsDown>
-                    <HeaderList />
-                </Hidden>
-            </Header>
-            <main>
-                <div className={classes.heroContent}>
-                    <Grid className={classes.gap}>
-                        <Grid>
-                            <img
-                                className={classes.imgLogo}
-                                src={aboutLogo}
-                                alt="about_logo"
-                            />
-                            <hr />
-                        </Grid>
-                    </Grid>
-                    <Container>
-                        <Grid className={classes.mainContent}>
-                            <Grid className={classes.heroText}>
-                                <Typography variant={'h2'}>
-                                    shaping your Identity <br />
-                                    with design.
-                                </Typography>
-                                <ImageAnimationWrapper
-                                    width="70%"
-                                    height="100%"
-                                    color="#000"
-                                >
-                                    <Typography
-                                        variant={'h5'}
-                                        className={'text'}
-                                        noWrap={true}
-                                    >
-                                        アイデンティティをデザインする
-                                    </Typography>
-                                </ImageAnimationWrapper>
-                            </Grid>
-                            <Grid
-                                container
-                                justify="flex-end"
-                                alignItems="center"
-                            >
-                                <LottiePcDeskTop />
-                            </Grid>
-                            <VisibleContainer
-                                state={isVisible}
-                                setState={setIsVisible}
-                                animeClass={classes.fadeIn}
-                            >
-                                <Grid>
-                                    <Typography
-                                        variant={'h5'}
-                                        className={classes.description}
-                                    >
-                                        美容師、ヘアメイク、エンジニア
-                                        <br />
-                                        全て 探究心が必要な職業
-                                        <br />
-                                        日々、自己研鑽が必要な職業
-                                        <br />
-                                        この職人気質な世界に僕は魅了された
-                                        <br />
-                                        異色のパラレルキャリア
-                                        <br />
-                                        貴方の仕事のお手伝いをさせて下さい。
-                                        <br />
-                                    </Typography>
-                                </Grid>
-                            </VisibleContainer>
-                            <Grid className={classes.skillWrapper}>
-                                <Grid
-                                    container
-                                    justify="center"
-                                    alignItems="center"
-                                    style={{ marginBottom: '2em' }}
-                                >
-                                    <Typography variant={'h2'}>
-                                        SKILL
-                                    </Typography>
-                                </Grid>
-                                <Grid
-                                    container
-                                    justify="center"
-                                    alignItems="center"
-                                >
-                                    <ImageAnimationWrapper
-                                        width="90%"
-                                        height="100%"
-                                        color="#000"
-                                    >
-                                        <Typography
-                                            variant={'h6'}
-                                            align="center"
-                                            className={classes.skillDescription}
-                                        >
-                                            JavaScript, TypeScript, React.js,
-                                            Redux, React Native,
-                                            <br />
-                                            Next.js, Vue.js, Node.js, WordPress
-                                            etc.
-                                            <br />
-                                        </Typography>
-                                    </ImageAnimationWrapper>
-                                </Grid>
-                            </Grid>
-                            <Grid>
-                                <Typography
-                                    variant={'h5'}
-                                    className={classes.description}
-                                >
-                                    基本的にはフロントエンドエンジニア
-                                    <br />
-                                    ですが、容貌次第でなんでもやります。
-                                    <br />
-                                    提案力、コミュニケーション能力には
-                                    <br />
-                                    自信があります。
-                                    <br />
-                                    一度、ご相談ください。
-                                </Typography>
-                            </Grid>
-                            <CoffeeAndMan />
-                        </Grid>
-                    </Container>
-                </div>
-            </main>
-            <Footer description="Hair and Web designer" />
-        </>
-    )
-}

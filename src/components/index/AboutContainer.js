@@ -5,6 +5,32 @@ import ProgramingMan from '../../components/Lottie/programingMan/programingMan'
 import topImg from '../../../public/static/img/uyuniSaltLakemono.jpg'
 import Link from 'next/link'
 
+export default function AboutContainer({ isActiveAboutInner }) {
+    const classes = useStyles()
+    return (
+        <Grid container justify="space-between" className={classes.inner}>
+            <Grid className={isActiveAboutInner ? classes.about : classes.hide}>
+                <Typography>
+                    What is the Hair and Web designer?
+                    <br />
+                    How does that work ??
+                    <br />
+                    Let&#39;s go to the About page →
+                </Typography>
+            </Grid>
+            <Link href="/about" passHref prefetch={false}>
+                <Grid
+                    className={
+                        isActiveAboutInner ? classes.lottie : classes.hide
+                    }
+                >
+                    <ProgramingMan />
+                </Grid>
+            </Link>
+        </Grid>
+    )
+}
+
 const useStyles = makeStyles({
     hide: {
         opacity: 0,
@@ -35,7 +61,7 @@ const useStyles = makeStyles({
         width: '30%',
         marginTop: '10em',
         cursor: 'pointer',
-        animation: '$fade-in-top 4s cubic-bezier(0.390, 0.575, 0.565, 1.000)',
+        animation: '$fade-in-top 2s cubic-bezier(0.390, 0.575, 0.565, 1.000)',
         '@media (max-width:600px)': {
             width: 'auto',
             margin: '0 auto',
@@ -52,29 +78,3 @@ const useStyles = makeStyles({
         },
     },
 })
-
-export default function AboutContainer({ isActiveAboutInner }) {
-    const classes = useStyles()
-    return (
-        <Grid container justify="space-between" className={classes.inner}>
-            <Grid className={isActiveAboutInner ? classes.about : classes.hide}>
-                <Typography>
-                    What is the Hair and Web designer?
-                    <br />
-                    How does that work ??
-                    <br />
-                    Let&#39;s go to the About page →
-                </Typography>
-            </Grid>
-            <Link href="/about" passHref prefetch={false}>
-                <Grid
-                    className={
-                        isActiveAboutInner ? classes.lottie : classes.hide
-                    }
-                >
-                    <ProgramingMan />
-                </Grid>
-            </Link>
-        </Grid>
-    )
-}

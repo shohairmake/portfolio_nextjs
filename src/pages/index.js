@@ -6,7 +6,7 @@ import Header from '../components/header/Header'
 import Footer from '../components/Footer'
 import TopContainer from '../components/index/TopContainer'
 import SwipeDrawer from '../components/header/SwipeDrawer'
-import Album from '../components/index/Album/Album'
+import WorkContainer from '../components/index/WorkContainer'
 import AboutContainer from '../components/index/AboutContainer'
 import LottiePostBox from '../components/Lottie/postbox/postbox'
 import fetch from 'isomorphic-unfetch'
@@ -24,10 +24,9 @@ export default function Index({ images }) {
         fadeInAbout: classes.hide,
         fadeInContact: classes.hide,
     })
-    const [isActive, setIsActive] = React.useState(false)
+    const [isActiveWorkInner, setIsActiveWorkInner] = React.useState(false)
     const [isActiveAboutInner, setIsActiveAboutInner] = React.useState(false)
     const [isActiveContact, setIsActiveContact] = React.useState(false)
-
     const [isMaxWidth, setIsMaxWith] = React.useState(false)
 
     React.useEffect(() => {
@@ -91,8 +90,14 @@ export default function Index({ images }) {
                             />
                         </Grid>
                     </Grid>
-                    <VisibleContainer state={isActive} setState={setIsActive}>
-                        <Album isActive={isActive} images={images} />
+                    <VisibleContainer
+                        state={isActiveWorkInner}
+                        setState={setIsActiveWorkInner}
+                    >
+                        <WorkContainer
+                            images={images}
+                            isActiveWorkInner={isActiveWorkInner}
+                        />
                     </VisibleContainer>
                     <Grid className={classes.gap}>
                         <Grid>
