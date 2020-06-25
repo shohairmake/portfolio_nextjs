@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         opacity: '0.8',
         overflow: 'hidden',
-        // animation: '$fadeIn ease-in-out',
+        animation: '$fadeIn ease-in-out',
     },
     HeroInner: {
         padding: '100px 0',
