@@ -8,26 +8,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Link from 'next/link'
 
-const useStyles = makeStyles((theme) => ({
-    cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
-    },
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    cardMedia: {
-        paddingTop: '100%',
-        // paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-        flexGrow: 1,
-        cursor: 'pointer',
-    },
-}))
-
 const imgEscapeUrl =
     'https://images.microcms-assets.io/protected/ap-northeast-1:ce724cba-2fc5-43d8-8189-04c7e1e5975e/service/strad/media/hair9.jpg'
 
@@ -85,3 +65,23 @@ export default function BlogContainer({ blogs }) {
         </>
     )
 }
+
+const useStyles = makeStyles((theme) => ({
+    cardGrid: {
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(8),
+    },
+    card: {
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    cardMedia: {
+        paddingTop: '100%',
+        // paddingTop: '56.25%', // 16:9
+    },
+    cardContent: {
+        flexGrow: 1,
+        cursor: 'pointer',
+    },
+}))

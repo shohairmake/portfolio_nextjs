@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
 import { Menu, MenuItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { Home, BurstMode, Info, Mail } from '@material-ui/icons'
+import { Home, BurstMode, Info, Mail, MenuBook } from '@material-ui/icons'
 import UseAnimations from 'react-useanimations'
 
 const StyledMenu = (props) => (
@@ -98,6 +98,11 @@ export default function CustomizedMenus() {
                         href="/work"
                         text="Work"
                         icon={<BurstMode fontSize="small" />}
+                    />
+                    <Content
+                        href="/blog"
+                        text="Blog"
+                        icon={<MenuBook fontSize="small" />}
                     />
                     <Content
                         href="/about"
