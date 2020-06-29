@@ -2,13 +2,12 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Typography } from '@material-ui/core'
 import ProgramingMan from '../../components/Lottie/programingMan/programingMan'
-import topImg from '../../../public/static/img/uyuniSaltLakemono.jpg'
 import Link from 'next/link'
 
 export default function AboutContainer({ isActiveAboutInner }) {
     const classes = useStyles()
     return (
-        <Grid container justify="space-between" className={classes.inner}>
+        <Grid container justify="space-between">
             <Grid className={isActiveAboutInner ? classes.about : classes.hide}>
                 <Typography>
                     What is the Hair and Web designer?
@@ -34,10 +33,6 @@ export default function AboutContainer({ isActiveAboutInner }) {
 const useStyles = makeStyles({
     hide: {
         opacity: 0,
-    },
-    inner: {
-        backgroundImage: `url(${topImg})`,
-        minHeight: '400px',
     },
     about: {
         marginLeft: '3em',

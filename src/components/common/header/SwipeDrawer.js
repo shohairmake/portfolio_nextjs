@@ -10,6 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import {
     Home,
     BurstMode,
+    MenuBook,
     Info,
     Mail,
     Facebook,
@@ -58,6 +59,7 @@ export default function SwipeDrawer({ children }) {
             <List>
                 <Contet href="/" text="Home" icon={<Home />} />
                 <Contet href="/work" text="Work" icon={<BurstMode />} />
+                <Contet href="/blog" text="blog" icon={<MenuBook />} />
                 <Contet href="/about" text="About" icon={<Info />} />
                 <Contet href="/contact" text="Contact" icon={<Mail />} />
             </List>

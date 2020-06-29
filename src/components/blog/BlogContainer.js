@@ -21,7 +21,7 @@ export default function BlogContainer({ blogs }) {
                     {/* End hero unit */}
                     <Grid container spacing={4}>
                         {blogs.map((blog) => (
-                            <Grid item key={blog.id} xs={12} sm={6} md={4}>
+                            <Grid item key={blog.id} xs={12} sm={4} md={4}>
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
@@ -43,17 +43,18 @@ export default function BlogContainer({ blogs }) {
                                             <Typography
                                                 gutterBottom
                                                 variant="h5"
-                                                component="h2"
+                                                component="h3"
+                                                className={classes.blogTitle}
                                             >
                                                 {blog.title}
                                             </Typography>
-
+                                            {/* 本文
                                             <Typography>
                                                 {blog.body.replace(
                                                     /<("[^"]*"|'[^']*'|[^'">])*>/g,
                                                     ''
                                                 )}
-                                            </Typography>
+                                            </Typography> */}
                                         </CardContent>
                                     </Link>
                                 </Card>
@@ -83,5 +84,12 @@ const useStyles = makeStyles((theme) => ({
     cardContent: {
         flexGrow: 1,
         cursor: 'pointer',
+    },
+    blogTitle: {
+        fontSize: '1.5rem',
+        fontWeight: '400',
+        '@media (max-width:600px)': {
+            fontSize: '1rem',
+        },
     },
 }))

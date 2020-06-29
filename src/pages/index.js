@@ -10,8 +10,8 @@ import LogoContainer from '../components/index/LogoContainer'
 import LottiePostBox from '../components/Lottie/postbox/postbox'
 import { IndexTemplate } from '../components/common/Template'
 import { VisibleContainer } from '../components/helper/animationHelper'
+import BlogContainer from '../components/blog/BlogContainer'
 // image file
-import topImg from '../../public/static/img/uyuniSaltLakemono.jpg'
 import workLogo from '../../public/static/img/WORK.png'
 import blogLogo from '../../public/static/img/BLOG.png'
 import aboutLogo from '../../public/static/img/ABOUT.png'
@@ -50,13 +50,21 @@ export default function Index({ images, blogs }) {
             ) {
                 setState({
                     ...state,
-                    fadeInAbout: classes.imgLogo,
                     fadeInBlog: classes.imgLogo,
                 })
             }
             if (
-                document.documentElement.scrollTop > 1800 ||
-                document.body.scrollTop > 1800
+                document.documentElement.scrollTop > 1900 ||
+                document.body.scrollTop > 1900
+            ) {
+                setState({
+                    ...state,
+                    fadeInAbout: classes.imgLogo,
+                })
+            }
+            if (
+                document.documentElement.scrollTop > 2500 ||
+                document.body.scrollTop > 2500
             ) {
                 setState({
                     ...state,
@@ -68,6 +76,10 @@ export default function Index({ images, blogs }) {
         return function cleanup() {
             window.removeEventListener('scroll', scrollAction)
         }
+    })
+
+    const filterBlogs = blogs.filter((blog, index) => {
+        return index < 3
     })
 
     return (
@@ -95,7 +107,9 @@ export default function Index({ images, blogs }) {
                             alt="blog_logo"
                             state={state.fadeInBlog}
                         />
-                        <Grid className={classes.container}>blog</Grid>
+                        <Grid className={classes.container}>
+                            <BlogContainer blogs={filterBlogs} />
+                        </Grid>
                         <LogoContainer
                             logo={aboutLogo}
                             alt="about_logo"
@@ -117,17 +131,15 @@ export default function Index({ images, blogs }) {
                             state={state.fadeInContact}
                         />
                         <Grid className={classes.container}>
-                            <Grid className={classes.inner}>
-                                <VisibleContainer
-                                    state={isActiveContact}
-                                    setState={setIsActiveContact}
-                                >
-                                    <LottiePostBox
-                                        isMaxWidth={isMaxWidth}
-                                        isActiveContact={isActiveContact}
-                                    />
-                                </VisibleContainer>
-                            </Grid>
+                            <VisibleContainer
+                                state={isActiveContact}
+                                setState={setIsActiveContact}
+                            >
+                                <LottiePostBox
+                                    isMaxWidth={isMaxWidth}
+                                    isActiveContact={isActiveContact}
+                                />
+                            </VisibleContainer>
                         </Grid>
                     </Container>
                 </main>
@@ -140,10 +152,8 @@ const useStyles = makeStyles({
     container: {
         width: '100%',
         height: 'auto',
-    },
-    inner: {
-        backgroundImage: `url(${topImg})`,
         minHeight: '400px',
+        backgroundColor: '#c8c8c8',
     },
     imgLogo: {
         width: '14em',
