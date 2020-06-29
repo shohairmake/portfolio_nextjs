@@ -1,35 +1,36 @@
-import React from 'react'
-import { Container, Grid, Hidden, Typography } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
+import fetch from 'isomorphic-unfetch'
+import { Container, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import HeaderList from '../components/header/HeaderList'
-import Header from '../components/header/Header'
-import Footer from '../components/Footer'
+//components
 import TopContainer from '../components/index/TopContainer'
-import SwipeDrawer from '../components/header/SwipeDrawer'
 import WorkContainer from '../components/index/WorkContainer'
 import AboutContainer from '../components/index/AboutContainer'
+import LogoContainer from '../components/index/LogoContainer'
 import LottiePostBox from '../components/Lottie/postbox/postbox'
-import fetch from 'isomorphic-unfetch'
+import { IndexTemplate } from '../components/common/Template'
 import { VisibleContainer } from '../components/helper/animationHelper'
+import BlogContainer from '../components/blog/BlogContainer'
 // image file
-import topImg from '../../public/static/img/uyuniSaltLakemono.jpg'
 import workLogo from '../../public/static/img/WORK.png'
+import blogLogo from '../../public/static/img/BLOG.png'
 import aboutLogo from '../../public/static/img/ABOUT.png'
 import contactLogo from '../../public/static/img/CONTACT.png'
 
-export default function Index({ images }) {
+export default function Index({ images, blogs }) {
     const classes = useStyles()
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         fadeInWork: classes.hide,
+        fadeInBlog: classes.hide,
         fadeInAbout: classes.hide,
         fadeInContact: classes.hide,
     })
-    const [isActiveWorkInner, setIsActiveWorkInner] = React.useState(false)
-    const [isActiveAboutInner, setIsActiveAboutInner] = React.useState(false)
-    const [isActiveContact, setIsActiveContact] = React.useState(false)
-    const [isMaxWidth, setIsMaxWith] = React.useState(false)
+    const [isActiveWorkInner, setIsActiveWorkInner] = useState(false)
+    const [isActiveAboutInner, setIsActiveAboutInner] = useState(false)
+    const [isActiveContact, setIsActiveContact] = useState(false)
+    const [isMaxWidth, setIsMaxWith] = useState(false)
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (window.innerWidth < 600) {
             setIsMaxWith(true)
         }
@@ -40,7 +41,7 @@ export default function Index({ images }) {
             ) {
                 setState({
                     ...state,
-                    fadeInWork: `${classes.imgLogo} ${classes.fadeInDown}`,
+                    fadeInWork: classes.imgLogo,
                 })
             }
             if (
@@ -49,16 +50,25 @@ export default function Index({ images }) {
             ) {
                 setState({
                     ...state,
-                    fadeInAbout: `${classes.imgLogo} ${classes.fadeInDown}`,
+                    fadeInBlog: classes.imgLogo,
                 })
             }
             if (
-                document.documentElement.scrollTop > 1800 ||
-                document.body.scrollTop > 1800
+                document.documentElement.scrollTop > 1900 ||
+                document.body.scrollTop > 1900
             ) {
                 setState({
                     ...state,
-                    fadeInContact: `${classes.imgLogoContact} ${classes.fadeInDown}`,
+                    fadeInAbout: classes.imgLogo,
+                })
+            }
+            if (
+                document.documentElement.scrollTop > 2500 ||
+                document.body.scrollTop > 2500
+            ) {
+                setState({
+                    ...state,
+                    fadeInContact: classes.imgLogoContact,
                 })
             }
         }
@@ -68,67 +78,59 @@ export default function Index({ images }) {
         }
     })
 
+    const filterBlogs = blogs.filter((blog, index) => {
+        return index < 3
+    })
+
     return (
         <>
-            <Header>
-                <Hidden smUp>
-                    <SwipeDrawer />
-                </Hidden>
-                <Hidden xsDown>
-                    <HeaderList />
-                </Hidden>
-            </Header>
-            <main>
-                <TopContainer />
-                <Container>
-                    <Grid className={classes.gap}>
-                        <Grid>
-                            <img
-                                className={state.fadeInWork}
-                                src={workLogo}
-                                alt="work_logo"
-                            />
-                        </Grid>
-                    </Grid>
-                    <VisibleContainer
-                        state={isActiveWorkInner}
-                        setState={setIsActiveWorkInner}
-                    >
-                        <WorkContainer
-                            images={images}
-                            isActiveWorkInner={isActiveWorkInner}
+            <IndexTemplate>
+                <main>
+                    <TopContainer />
+                    <Container>
+                        <LogoContainer
+                            logo={workLogo}
+                            alt="work_logo"
+                            state={state.fadeInWork}
                         />
-                    </VisibleContainer>
-                    <Grid className={classes.gap}>
-                        <Grid>
-                            <img
-                                className={state.fadeInAbout}
-                                src={aboutLogo}
-                                alt="about_logo"
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid className={classes.container}>
                         <VisibleContainer
-                            state={isActiveAboutInner}
-                            setState={setIsActiveAboutInner}
+                            state={isActiveWorkInner}
+                            setState={setIsActiveWorkInner}
                         >
-                            <AboutContainer
-                                isActiveAboutInner={isActiveAboutInner}
+                            <WorkContainer
+                                images={images}
+                                isActiveWorkInner={isActiveWorkInner}
                             />
                         </VisibleContainer>
-                    </Grid>
-                    <Grid className={classes.gap}>
-                        <Grid>
-                            <img
-                                className={state.fadeInContact}
-                                src={contactLogo}
-                                alt="contact_logo"
-                            />
+                        <LogoContainer
+                            logo={blogLogo}
+                            alt="blog_logo"
+                            state={state.fadeInBlog}
+                        />
+                        <Grid className={classes.container}>
+                            <BlogContainer blogs={filterBlogs} />
                         </Grid>
-                    </Grid>
-                    <Grid className={classes.container}>
-                        <Grid className={classes.inner}>
+                        <LogoContainer
+                            logo={aboutLogo}
+                            alt="about_logo"
+                            state={state.fadeInAbout}
+                        />
+                        <Grid className={classes.container}>
+                            <VisibleContainer
+                                state={isActiveAboutInner}
+                                setState={setIsActiveAboutInner}
+                            >
+                                <AboutContainer
+                                    isActiveAboutInner={isActiveAboutInner}
+                                />
+                            </VisibleContainer>
+                        </Grid>
+                        <LogoContainer
+                            logo={contactLogo}
+                            alt="contact_logo"
+                            state={state.fadeInContact}
+                        />
+                        <Grid className={classes.container}>
                             <VisibleContainer
                                 state={isActiveContact}
                                 setState={setIsActiveContact}
@@ -139,40 +141,25 @@ export default function Index({ images }) {
                                 />
                             </VisibleContainer>
                         </Grid>
-                    </Grid>
-                </Container>
-            </main>
-            <Footer description="Hair and Web designer" />
+                    </Container>
+                </main>
+            </IndexTemplate>
         </>
     )
 }
 
-const useStyles = makeStyles((theme) => ({
-    cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
-    },
-    gap: {
-        width: '100%',
-        height: '200px',
-        display: 'table',
-        textAlign: 'center',
-        '& div': {
-            display: 'table-cell',
-            verticalAlign: 'middle',
-        },
-    },
+const useStyles = makeStyles({
     container: {
         width: '100%',
         height: 'auto',
-    },
-    inner: {
-        backgroundImage: `url(${topImg})`,
         minHeight: '400px',
+        backgroundColor: '#c8c8c8',
     },
     imgLogo: {
         width: '14em',
         height: 'auto',
+        animation:
+            '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
         '@media (max-width:600px)': {
             width: '11em',
         },
@@ -180,13 +167,11 @@ const useStyles = makeStyles((theme) => ({
     imgLogoContact: {
         width: '18em',
         height: 'auto',
+        animation:
+            '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
         '@media (max-width:600px)': {
             width: '15em',
         },
-    },
-    fadeInDown: {
-        animation:
-            '$fade-in-top 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both',
     },
     hide: {
         opacity: 0,
@@ -201,18 +186,24 @@ const useStyles = makeStyles((theme) => ({
             opacity: 0.7,
         },
     },
-}))
+})
 
 export async function getStaticProps() {
     const key = {
         headers: { 'X-API-KEY': process.env.API_KEY },
     }
-    const res = await fetch(`${process.env.API_END_POINT}/image?limit=30`, key)
-    const data = await res.json()
+    const imageRes = await fetch(
+        `${process.env.API_END_POINT}/image?limit=30`,
+        key
+    )
+    const blogRes = await fetch(`${process.env.API_END_POINT}/blogs`, key)
+    const imageData = await imageRes.json()
+    const blogData = await blogRes.json()
 
     return {
         props: {
-            images: data.contents,
+            images: imageData.contents,
+            blogs: blogData.contents,
         },
     }
 }

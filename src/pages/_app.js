@@ -4,13 +4,13 @@ import { ThemeProvider, StylesProvider } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../theme'
 import { PageTransition } from 'next-page-transitions'
-import { NextSeo } from 'next-seo'
+import { DefaultSeo } from 'next-seo'
 import seoConfig from '../../next-seo.config'
 
 import 'animate.css'
 
 const DEFAULT_SEO = () => (
-    <NextSeo
+    <DefaultSeo
         title="StraD Home"
         description="web site of Sho Tanaka who is hair artist and web programer "
         keywords="hair make,hair Style,programing,react,next.js,"

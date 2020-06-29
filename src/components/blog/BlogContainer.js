@@ -8,26 +8,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Link from 'next/link'
 
-const useStyles = makeStyles((theme) => ({
-    cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
-    },
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    cardMedia: {
-        paddingTop: '100%',
-        // paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-        flexGrow: 1,
-        cursor: 'pointer',
-    },
-}))
-
 const imgEscapeUrl =
     'https://images.microcms-assets.io/protected/ap-northeast-1:ce724cba-2fc5-43d8-8189-04c7e1e5975e/service/strad/media/hair9.jpg'
 
@@ -41,7 +21,7 @@ export default function BlogContainer({ blogs }) {
                     {/* End hero unit */}
                     <Grid container spacing={4}>
                         {blogs.map((blog) => (
-                            <Grid item key={blog.id} xs={12} sm={6} md={4}>
+                            <Grid item key={blog.id} xs={12} sm={4} md={4}>
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
@@ -63,17 +43,18 @@ export default function BlogContainer({ blogs }) {
                                             <Typography
                                                 gutterBottom
                                                 variant="h5"
-                                                component="h2"
+                                                component="h3"
+                                                className={classes.blogTitle}
                                             >
                                                 {blog.title}
                                             </Typography>
-
+                                            {/* 本文
                                             <Typography>
                                                 {blog.body.replace(
                                                     /<("[^"]*"|'[^']*'|[^'">])*>/g,
                                                     ''
                                                 )}
-                                            </Typography>
+                                            </Typography> */}
                                         </CardContent>
                                     </Link>
                                 </Card>
@@ -85,3 +66,30 @@ export default function BlogContainer({ blogs }) {
         </>
     )
 }
+
+const useStyles = makeStyles((theme) => ({
+    cardGrid: {
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(8),
+    },
+    card: {
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    cardMedia: {
+        paddingTop: '100%',
+        // paddingTop: '56.25%', // 16:9
+    },
+    cardContent: {
+        flexGrow: 1,
+        cursor: 'pointer',
+    },
+    blogTitle: {
+        fontSize: '1.5rem',
+        fontWeight: '400',
+        '@media (max-width:600px)': {
+            fontSize: '1rem',
+        },
+    },
+}))
