@@ -8,8 +8,6 @@ import {
     ImageAnimationWrapper,
     ImageAnimation,
 } from '../helper/animationHelper'
-import hair from '../../../public/static/img/hair2.jpg'
-import topImg from '../../../public/static/img/uyuniSaltLakemono.jpg'
 
 export default function TopContainer() {
     const classes = useStyles()
@@ -84,7 +82,7 @@ const textAnime = {
 const useStyles = makeStyles((theme) => ({
     heroContent: {
         backgroundColor: theme.palette.background.default,
-        backgroundImage: `url(${topImg})`,
+        backgroundImage: 'url(/static/img/uyuniSaltLakemono.jpg)',
         padding: theme.spacing(8, 0, 6),
         minHeight: '800px',
         width: '100%',
@@ -122,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
         transform: 'rotate(20deg)',
         borderRadius: '10px',
         position: 'relative',
-        backgroundImage: `url(${hair})`,
+        backgroundImage: 'url(/static/img/hair2.jpg)',
         backgroundSize: 'cover',
         animation: '$fadeIn ease-in-out 2s',
     },
