@@ -1,10 +1,12 @@
-# Name
-
-Portfolio by Next.js
+# Portfolio by Next.js
 
 ## Description
 
 This is my Portfolio & Blog Web Site
+
+## Web site
+
+https://sho-tanaka-hair.netlify.app/blog
 
 ## Technical Stack
 
