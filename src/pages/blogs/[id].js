@@ -136,6 +136,6 @@ export const getStaticProps = async (context) => {
     }
 }
 
-blogId.PropTypes = {
+BlogId.PropTypes = {
     blog: PropTypes.object.isRequired,
 }
