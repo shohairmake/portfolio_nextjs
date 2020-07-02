@@ -1,7 +1,7 @@
 module.exports = {
-  "tabWidth": 4, //インデントのスペース数
-  "singleQuote": true, //シングルクォートに統一
-  "trailingComma": 'es5', //末尾のカンマをどうするか: es6に準拠させる。
+  "tabWidth": 4,
+  "singleQuote": true,
+  "trailingComma": 'es5',
   "endOfLine": 'lf',
   "semi": false
 };

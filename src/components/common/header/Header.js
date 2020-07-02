@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Toolbar } from '@material-ui/core'
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,4 +26,8 @@ export default function Header({ children }) {
             <Toolbar className={classes.navColor}>{children}</Toolbar>
         </AppBar>
     )
+}
+
+Header.propTypes = {
+    children: PropTypes.array.isRequired,
 }

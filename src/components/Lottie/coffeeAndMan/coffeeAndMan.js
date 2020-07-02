@@ -5,16 +5,10 @@ import { Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const useStyle = makeStyles({
-    message: {
-        letterSpacing: '0.2em',
-        fontWeight: '100',
-    },
-})
+import PropTypes from 'prop-types'
 
 export default function CoffeeAndMan({ isVisibleCoffeeMan }) {
-    const classes = useStyle()
+    const classes = useStyles()
 
     const list = {
         visible: {
@@ -80,4 +74,15 @@ export default function CoffeeAndMan({ isVisibleCoffeeMan }) {
             </Grid>
         </Link>
     )
+}
+
+const useStyles = makeStyles({
+    message: {
+        letterSpacing: '0.2em',
+        fontWeight: '100',
+    },
+})
+
+CoffeeAndMan.propTypes = {
+    isVisibleCoffeeMan: PropTypes.bool.isRequired,
 }

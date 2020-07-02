@@ -17,12 +17,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export const FormPersonalDetails = ({
+export function FormPersonalDetails({
     formData,
     setFormData,
     nextStep,
     prevStep,
-}) => {
+}) {
     const classes = useStyles()
     const [direction, setDirection] = useState('back')
     return (

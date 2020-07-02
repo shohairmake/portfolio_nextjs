@@ -1,13 +1,15 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Hidden, Typography } from '@material-ui/core'
-import Logo from '../svg/Logo'
-import LottieBall from '../Lottie/ball/LottieBall'
 import {
     svgAnimation,
     ImageAnimationWrapper,
     ImageAnimation,
 } from '../helper/animationHelper'
+//svg
+import Logo from '../svg/Logo'
+//Lottie
+import LottieBall from '../Lottie/ball/LottieBall'
 
 export default function TopContainer() {
     const classes = useStyles()

@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 import fetch from 'isomorphic-unfetch'
-import { Template } from '../../components/common/Template'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid, Typography } from '@material-ui/core'
+import PropTypes from 'prop-types'
+//component
+import { Template } from '../../components/common/Template'
 
-export default function blogId({ blog }) {
+export default function BlogId({ blog }) {
     const classes = useStyles()
     const Image = ({ image }) => (
         <img src={image.url} className={classes.image} />
@@ -132,4 +134,8 @@ export const getStaticProps = async (context) => {
             blog: blog,
         },
     }
+}
+
+BlogId.PropTypes = {
+    blog: PropTypes.object.isRequired,
 }

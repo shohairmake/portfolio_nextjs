@@ -4,23 +4,6 @@ import pcDeskTop from './pcDeskTop.json'
 import { Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-const useStyle = makeStyles({
-    name: {
-        marginLeft: '1.5em',
-        '& h6': {
-            fontWeight: 400,
-            letterSpacing: '0.1em',
-            '@media (max-width:600px)': {
-                fontSize: '0.7em',
-            },
-        },
-        '& h5': {
-            letterSpacing: '0.5em',
-            marginTop: '0.5em',
-        },
-    },
-})
-
 export default function LottiePcDeskTop() {
     const classes = useStyle()
     const defaultOptions = {
@@ -59,3 +42,20 @@ export default function LottiePcDeskTop() {
         </Grid>
     )
 }
+
+const useStyle = makeStyles({
+    name: {
+        marginLeft: '1.5em',
+        '& h6': {
+            fontWeight: 400,
+            letterSpacing: '0.1em',
+            '@media (max-width:600px)': {
+                fontSize: '0.7em',
+            },
+        },
+        '& h5': {
+            letterSpacing: '0.5em',
+            marginTop: '0.5em',
+        },
+    },
+})

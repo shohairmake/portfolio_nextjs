@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 
 export default function LogoContainer({ logo, alt, state }) {
     const classes = useStyles()
@@ -25,3 +26,9 @@ const useStyles = makeStyles({
         },
     },
 })
+
+LogoContainer.prototype = {
+    logo: PropTypes.object.isRequired,
+    alt: PropTypes.string.isRequired,
+    state: PropTypes.func.isRequired,
+}

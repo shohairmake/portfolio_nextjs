@@ -1,6 +1,7 @@
 import React from 'react'
 import Lottie from 'react-lottie'
 import mail from './mail.json'
+import PropTypes from 'prop-types'
 
 export default function lottieMail({ className }) {
     const defaultOptions = {
@@ -22,4 +23,8 @@ export default function lottieMail({ className }) {
             />
         </div>
     )
+}
+
+lottieMail.prototypes = {
+    className: PropTypes.string.isRequired,
 }

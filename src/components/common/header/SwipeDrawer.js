@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     },
 })
 
-const Contet = ({ href = {}, text = {}, icon = {} }) => (
+const Content = ({ href = '', text = '', icon = {} }) => (
     <Link href={href} passHref>
         <ListItem button key={text}>
             <ListItemIcon>{icon}</ListItemIcon>
@@ -41,7 +41,7 @@ const Contet = ({ href = {}, text = {}, icon = {} }) => (
     </Link>
 )
 
-export default function SwipeDrawer({ children }) {
+export default function SwipeDrawer() {
     const classes = useStyles()
     const [isActive, setIsActive] = React.useState(false)
 
@@ -57,17 +57,17 @@ export default function SwipeDrawer({ children }) {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                <Contet href="/" text="Home" icon={<Home />} />
-                <Contet href="/work" text="Work" icon={<BurstMode />} />
-                <Contet href="/blog" text="blog" icon={<MenuBook />} />
-                <Contet href="/about" text="About" icon={<Info />} />
-                <Contet href="/contact" text="Contact" icon={<Mail />} />
+                <Content href="/" text="Home" icon={<Home />} />
+                <Content href="/work" text="Work" icon={<BurstMode />} />
+                <Content href="/blog" text="blog" icon={<MenuBook />} />
+                <Content href="/about" text="About" icon={<Info />} />
+                <Content href="/contact" text="Contact" icon={<Mail />} />
             </List>
             <Divider />
             <List>
-                <Contet href="/" text="Instagram" icon={<Instagram />} />
-                <Contet href="/" text="Facebook" icon={<Facebook />} />
-                <Contet href="/" text="Twitter" icon={<Twitter />} />
+                <Content href="/" text="Instagram" icon={<Instagram />} />
+                <Content href="/" text="Facebook" icon={<Facebook />} />
+                <Content href="/" text="Twitter" icon={<Twitter />} />
             </List>
         </div>
     )

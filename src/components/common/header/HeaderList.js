@@ -4,8 +4,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Menu, MenuItem, ListItemIcon, ListItemText } from '@material-ui/core'
 import { Home, BurstMode, Info, Mail, MenuBook } from '@material-ui/icons'
 import UseAnimations from 'react-useanimations'
+import PropTypes from 'prop-types'
 
-const StyledMenu = (props) => (
+const StyledMenu = (props = {}) => (
     <Menu
         elevation={0}
         getContentAnchorEl={null}
@@ -130,4 +131,8 @@ export default function CustomizedMenus() {
             />
         </div>
     )
+}
+
+StyledMenu.propTypes = {
+    props: PropTypes.object.isRequired,
 }

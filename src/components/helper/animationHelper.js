@@ -1,6 +1,7 @@
 import React from 'react'
 import anime from 'animejs'
 import VizSensor from 'react-visibility-sensor'
+import PropTypes from 'prop-types'
 
 export const ImageAnimation = (line, element, lineHeight, delay) => {
     anime
@@ -96,4 +97,24 @@ export const svgAnimation = () => {
             return i * 500
         },
     })
+}
+
+ImageAnimation.propTypes = {
+    line: PropTypes.string.isRequired,
+    element: PropTypes.string.isRequired,
+    lineHeight: PropTypes.string.isRequired,
+    delay: PropTypes.string.isRequired,
+}
+
+ImageAnimationWrapper.propTypes = {
+    color: PropTypes.string.isRequired,
+    width: PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired,
+    children: PropTypes.object.isRequired,
+}
+
+VisibleContainer.propTypes = {
+    state: PropTypes.bool.isRequired,
+    setState: PropTypes.func.isRequired,
+    children: PropTypes.object.isRequired,
 }

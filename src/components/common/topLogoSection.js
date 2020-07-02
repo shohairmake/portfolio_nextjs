@@ -1,12 +1,17 @@
 import React from 'react'
-import aboutLogo from '../../../public/static/img/ABOUT.png'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+//image
+import aboutLogo from '../../../public/static/img/ABOUT.png'
 import workLogo from '../../../public/static/img/WORK.png'
 import contactLogo from '../../../public/static/img/CONTACT.png'
 import blogLogo from '../../../public/static/img/BLOG.png'
 
-const TopLogoSection = ({ logo, alt, isContactClassName }) => {
+const TopLogoSection = ({
+    logo = {},
+    alt = '',
+    isContactClassName = false,
+}) => {
     const classes = useStyles()
     return (
         <Grid className={classes.gap}>

@@ -1,13 +1,13 @@
 import React from 'react'
 
-const SVG = ({
+export default function SVG({
     style = {},
     fill = '#000',
     width = '',
     height = '',
     className = '',
     viewBox = '70 0 150 60',
-}) => {
+}) {
     return (
         <svg
             width={width}
@@ -114,5 +114,3 @@ const SVG = ({
         </svg>
     )
 }
-
-export default SVG

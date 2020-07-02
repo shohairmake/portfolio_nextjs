@@ -17,7 +17,7 @@ import {
     MessageText,
 } from '../components/about/InnerText'
 
-export default function about() {
+export default function About() {
     const [isVisible, setIsVisible] = useState(false)
     const [isVisibleSkills, setIsVisibleSkills] = useState(false)
     const [isVisibleCoffeeMan, setIsVisibleCoffeeMan] = useState(false)

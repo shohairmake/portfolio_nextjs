@@ -2,7 +2,7 @@ import React from 'react'
 import Lottie from 'react-lottie'
 import programingMan from './programingMan.json'
 
-export default function ProgramingMan({ className }) {
+export default function ProgramingMan() {
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -13,10 +13,7 @@ export default function ProgramingMan({ className }) {
     }
 
     return (
-        <div
-            className={className || 'lottie-icon'}
-            style={{ filter: 'grayscale(90%)' }}
-        >
+        <div className="lottie-icon" style={{ filter: 'grayscale(90%)' }}>
             <Lottie
                 options={defaultOptions}
                 height={250}

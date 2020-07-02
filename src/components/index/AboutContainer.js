@@ -1,8 +1,10 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Typography } from '@material-ui/core'
-import ProgramingMan from '../../components/Lottie/programingMan/programingMan'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
+//Lottie
+import ProgramingMan from '../../components/Lottie/programingMan/programingMan'
 
 export default function AboutContainer({ isActiveAboutInner }) {
     const classes = useStyles()
@@ -73,3 +75,7 @@ const useStyles = makeStyles({
         },
     },
 })
+
+AboutContainer.propTypes = {
+    isActiveAboutInner: PropTypes.bool.isRequired,
+}

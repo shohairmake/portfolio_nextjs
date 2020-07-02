@@ -4,36 +4,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import postbox from './postbox.json'
 import Link from 'next/link'
-
-const useStyles = makeStyles({
-    hide: {
-        opacity: 0,
-    },
-    container: {
-        cursor: 'pointer',
-        animation: '$fade-in-top 2s cubic-bezier(0.390, 0.575, 0.565, 1.000)',
-    },
-    font: {
-        fontSize: '3rem',
-        color: '#fff',
-        fontWeight: '300',
-        lineHeight: '2.5',
-        '@media (max-width:600px)': {
-            fontSize: '2em',
-            lineHeight: '4.5',
-        },
-    },
-    '@keyframes fade-in-top': {
-        '0%': {
-            transform: 'translateY(-20px)',
-            opacity: 0,
-        },
-        '100%': {
-            transform: 'translateY(0)',
-            opacity: 1,
-        },
-    },
-})
+import PropTypes from 'prop-types'
 
 export default function LottiePostBox({ isMaxWidth, isActiveContact }) {
     const classes = useStyles()
@@ -68,4 +39,39 @@ export default function LottiePostBox({ isMaxWidth, isActiveContact }) {
             </Grid>
         </Link>
     )
+}
+
+const useStyles = makeStyles({
+    hide: {
+        opacity: 0,
+    },
+    container: {
+        cursor: 'pointer',
+        animation: '$fade-in-top 2s cubic-bezier(0.390, 0.575, 0.565, 1.000)',
+    },
+    font: {
+        fontSize: '3rem',
+        color: '#fff',
+        fontWeight: '300',
+        lineHeight: '2.5',
+        '@media (max-width:600px)': {
+            fontSize: '2em',
+            lineHeight: '4.5',
+        },
+    },
+    '@keyframes fade-in-top': {
+        '0%': {
+            transform: 'translateY(-20px)',
+            opacity: 0,
+        },
+        '100%': {
+            transform: 'translateY(0)',
+            opacity: 1,
+        },
+    },
+})
+
+LottiePostBox.propTypes = {
+    isMaxWidth: PropTypes.bool.isRequired,
+    isActiveContact: PropTypes.bool.isRequired,
 }

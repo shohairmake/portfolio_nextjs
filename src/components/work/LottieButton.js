@@ -1,9 +1,11 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import { Grid, Button } from '@material-ui/core'
+import PropTypes from 'prop-types'
+//Lottie
 import LottieCamera from '../Lottie/camera/camera'
 import LottiePc from '../Lottie/pcScreen/pcScreen'
 import LottieNoteAndPen from '../Lottie/noteAndPen/noteAndPen'
-import { makeStyles } from '@material-ui/core/styles'
-import { Grid, Button } from '@material-ui/core'
 
 export default function LottieButton({ onClickHandler }) {
     const classes = useStyles()
@@ -58,3 +60,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }))
+
+LottieButton.prototypes = {
+    onClickHandler: PropTypes.func.isRequired,
+}
