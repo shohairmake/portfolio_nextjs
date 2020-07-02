@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { GridList, GridListTile } from '@material-ui/core'
 import Link from 'next/link'
+import PropTypes from 'prop-types'
 
 export default function WorkContainer({ images, isActiveWorkInner }) {
     const classes = useStyles()
@@ -65,3 +66,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }))
+
+WorkContainer.propTypes = {
+    images: PropTypes.array.isRequired,
+    isActiveWorkInner: PropTypes.bool.isRequired,
+}

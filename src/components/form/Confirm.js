@@ -1,42 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, List, ListItem, Typography, Grid } from '@material-ui/core/'
+import { Button, Typography, Grid } from '@material-ui/core/'
 import fetch from 'isomorphic-unfetch'
-
-const useStyles = makeStyles((theme) => ({
-    container: {
-        width: '80%',
-        '& div': {
-            textAlign: 'center',
-            marginBottom: '2em',
-            '& h4': {
-                margin: theme.spacing(2),
-                fontWeight: '200',
-                lineHeight: '2',
-                letterSpacing: '0.1em',
-            },
-        },
-    },
-    buttonWrapper: {
-        textAlign: 'center',
-        marginTop: '5em',
-        height: '200px',
-    },
-    button: {
-        margin: theme.spacing(2),
-        fontSize: '1.5em',
-        fontWeight: '100',
-        opacity: '0.8',
-    },
-}))
 
 export const Confirm = ({ formData, prevStep, nextStep }) => {
     const classes = useStyles()
     const { firstName, lastName, email, message } = formData
 
-    const onClickHandler = (e) => {
-        e.preventDefault()
+    const onClickHandler = (event) => {
+        event.preventDefault()
         const data = { firstName, lastName, email, message }
         fetch(`${process.env.API_END_POINT}/contacts`, {
             method: 'post',
@@ -98,6 +71,33 @@ export const Confirm = ({ formData, prevStep, nextStep }) => {
         </>
     )
 }
+
+const useStyles = makeStyles((theme) => ({
+    container: {
+        width: '80%',
+        '& div': {
+            textAlign: 'center',
+            marginBottom: '2em',
+            '& h4': {
+                margin: theme.spacing(2),
+                fontWeight: '200',
+                lineHeight: '2',
+                letterSpacing: '0.1em',
+            },
+        },
+    },
+    buttonWrapper: {
+        textAlign: 'center',
+        marginTop: '5em',
+        height: '200px',
+    },
+    button: {
+        margin: theme.spacing(2),
+        fontSize: '1.5em',
+        fontWeight: '100',
+        opacity: '0.8',
+    },
+}))
 
 Confirm.propTypes = {
     formData: PropTypes.object.isRequired,

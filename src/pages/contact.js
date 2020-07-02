@@ -6,7 +6,7 @@ import { ContactLogo } from '../components/common/topLogoSection'
 import { Template } from '../components/common/Template'
 import UserForms from '../components/form/UserForm'
 
-export default function contact() {
+export default function Contact() {
     const classes = useStyles()
 
     return (

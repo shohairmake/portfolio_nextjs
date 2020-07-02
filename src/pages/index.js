@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 import { Container, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
 //components
 import TopContainer from '../components/index/TopContainer'
 import WorkContainer from '../components/index/WorkContainer'
@@ -206,4 +207,9 @@ export async function getStaticProps() {
             blogs: blogData.contents,
         },
     }
+}
+
+Index.propTypes = {
+    images: PropTypes.array.isRequired,
+    blogs: PropTypes.array.isRequired,
 }

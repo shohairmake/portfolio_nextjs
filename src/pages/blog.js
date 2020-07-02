@@ -1,5 +1,6 @@
 import React from 'react'
 import fetch from 'isomorphic-unfetch'
+import PropTypes from 'prop-types'
 //components
 import { BlogLogo } from '../components/common/topLogoSection'
 import { Template } from '../components/common/Template'
@@ -7,7 +8,7 @@ import BlogContainer from '../components/blog/BlogContainer'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid } from '@material-ui/core'
 
-export default function blog({ blogs }) {
+export default function Blog({ blogs }) {
     const classes = useStyles()
     return (
         <>
@@ -46,4 +47,8 @@ export const getStaticProps = async () => {
             blogs: data.contents,
         },
     }
+}
+
+Blog.propTypes = {
+    blogs: PropTypes.array.isRequired,
 }

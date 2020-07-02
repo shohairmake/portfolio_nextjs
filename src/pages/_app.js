@@ -6,7 +6,7 @@ import theme from '../theme'
 import { PageTransition } from 'next-page-transitions'
 import { DefaultSeo } from 'next-seo'
 import seoConfig from '../../next-seo.config'
-
+import PropTypes from 'prop-types'
 import 'animate.css'
 
 const DEFAULT_SEO = () => (
@@ -59,4 +59,10 @@ export default function StradApp({ Component, pageProps, router }) {
             </StylesProvider>
         </>
     )
+}
+
+StradApp.propTypes = {
+    Component: PropTypes.func.isRequired,
+    pageProps: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
 }

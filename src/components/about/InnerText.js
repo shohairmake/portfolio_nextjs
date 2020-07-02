@@ -3,6 +3,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { ImageAnimationWrapper } from '../helper/animationHelper'
 import { motion } from 'framer-motion'
+import PropTypes from 'prop-types'
 
 export const HeroText = () => {
     const classes = useStyles()
@@ -161,3 +162,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }))
+
+SkillList.propTypes = {
+    isVisibleSkills: PropTypes.bool.isRequired,
+}

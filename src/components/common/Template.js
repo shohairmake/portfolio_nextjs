@@ -4,6 +4,7 @@ import Footer from './Footer'
 import SwipeDrawer from './header/SwipeDrawer'
 import { Hidden } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import PropTypes from 'prop-types'
 
 export const IndexTemplate = ({ children }) => (
     <>
@@ -46,3 +47,11 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
     },
 }))
+
+IndexTemplate.prototype = {
+    children: PropTypes.object.isRequired,
+}
+Template.prototype = {
+    children: PropTypes.object.isRequired,
+    color: PropTypes.string.isRequired,
+}
