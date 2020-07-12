@@ -1,8 +1,8 @@
+import { NextPage, GetStaticProps } from 'next'
 import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 import { Container, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import PropTypes from 'prop-types'
 //components
 import TopContainer from '../components/index/TopContainer'
 import WorkContainer from '../components/index/WorkContainer'
@@ -13,12 +13,17 @@ import { IndexTemplate } from '../components/common/Template'
 import { VisibleContainer } from '../components/helper/animationHelper'
 import BlogContainer from '../components/blog/BlogContainer'
 // image file
-import workLogo from '../../public/static/img/WORK.png'
-import blogLogo from '../../public/static/img/BLOG.png'
-import aboutLogo from '../../public/static/img/ABOUT.png'
-import contactLogo from '../../public/static/img/CONTACT.png'
+const workLogo = require('../../public/static/img/WORK.png')
+const blogLogo = require('../../public/static/img/BLOG.png')
+const aboutLogo = require('../../public/static/img/ABOUT.png')
+const contactLogo = require('../../public/static/img/CONTACT.png')
 
-export default function Index({ images, blogs }) {
+type Props = {
+    images: { key: string }[]
+    blogs: { key: string }[]
+}
+
+export const Index: NextPage<Props> = ({ images, blogs }) => {
     const classes = useStyles()
     const [state, setState] = useState({
         fadeInWork: classes.hide,
@@ -189,8 +194,8 @@ const useStyles = makeStyles({
     },
 })
 
-export async function getStaticProps() {
-    const key = {
+export const getStaticProps: GetStaticProps = async () => {
+    const key: { headers: { [key: string]: string | undefined } } | any = {
         headers: { 'X-API-KEY': process.env.API_KEY },
     }
     const imageRes = await fetch(
@@ -209,7 +214,4 @@ export async function getStaticProps() {
     }
 }
 
-Index.propTypes = {
-    images: PropTypes.array.isRequired,
-    blogs: PropTypes.array.isRequired,
-}
+export default Index

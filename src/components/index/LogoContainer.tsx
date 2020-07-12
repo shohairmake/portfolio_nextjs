@@ -1,9 +1,15 @@
-import React from 'react'
+import * as React from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 
-export default function LogoContainer({ logo, alt, state }) {
+type Props = {
+    logo: string
+    alt: string
+    state: any
+}
+
+export const LogoContainer: React.FC<Props> = ({ logo, alt, state }) => {
     const classes = useStyles()
     return (
         <Grid className={classes.gap}>
@@ -32,3 +38,5 @@ LogoContainer.prototype = {
     alt: PropTypes.string.isRequired,
     state: PropTypes.func.isRequired,
 }
+
+export default LogoContainer

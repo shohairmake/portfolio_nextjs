@@ -1,12 +1,18 @@
+import * as React from 'react'
 import HeaderList from './header/HeaderList'
 import Header from './header/Header'
 import Footer from './Footer'
 import SwipeDrawer from './header/SwipeDrawer'
 import { Hidden } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 
-export const IndexTemplate = ({ children }) => (
+type Props = {
+    children: React.ReactNode
+    color?: string
+}
+
+export const IndexTemplate: React.FC<Props> = ({ children }) => (
     <>
         <Header>
             <Hidden smUp>
@@ -21,7 +27,7 @@ export const IndexTemplate = ({ children }) => (
     </>
 )
 
-export const Template = ({ children, color }) => {
+export const Template: React.FC<Props> = ({ children, color }) => {
     const classes = useStyles()
     return (
         <>
@@ -39,7 +45,7 @@ export const Template = ({ children, color }) => {
     )
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     heroContent: {
         padding: theme.spacing(8, 0, 6),
         minHeight: '800px',

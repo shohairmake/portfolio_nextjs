@@ -1,9 +1,14 @@
-import React from 'react'
+import * as React from 'react'
 import anime from 'animejs'
 import VizSensor from 'react-visibility-sensor'
 import PropTypes from 'prop-types'
 
-export const ImageAnimation = (line, element, lineHeight, delay) => {
+export const ImageAnimation = (
+    line: string,
+    element: string,
+    lineHeight: number,
+    delay: number
+) => {
     anime
         .timeline({ loop: false })
         .add({
@@ -47,8 +52,19 @@ export const ImageAnimation = (line, element, lineHeight, delay) => {
             delay: 1000,
         })
 }
+type ImageAnimationWrapperProps = {
+    color: string
+    width: string
+    height: string
+    children: React.ReactNode
+}
 
-export const ImageAnimationWrapper = ({ color, width, height, children }) => (
+export const ImageAnimationWrapper: React.FC<ImageAnimationWrapperProps> = ({
+    color,
+    width,
+    height,
+    children,
+}) => (
     <div
         style={{
             position: 'relative',
@@ -74,7 +90,19 @@ export const ImageAnimationWrapper = ({ color, width, height, children }) => (
     </div>
 )
 
-export const VisibleContainer = ({ state, setState, children, animeClass }) => (
+type VisibleContainerProps = {
+    state: Boolean
+    setState: (state: boolean) => void
+    children: React.ReactNode
+    animeClass?: string
+}
+
+export const VisibleContainer: React.FC<VisibleContainerProps> = ({
+    state,
+    setState,
+    children,
+    animeClass,
+}) => (
     <VizSensor
         partialVisibility
         active={!state}
