@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import { NextPage, GetStaticProps } from 'next'
 import { Container, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import fetch from 'isomorphic-unfetch'
-import PropTypes from 'prop-types'
 //components
 import { ImageAnimation } from '../components/helper/animationHelper'
 import LottieButton from '../components/work/LottieButton'
 import { WorkLogo } from '../components/common/topLogoSection'
 import { Template } from '../components/common/Template'
 
-export default function Work({ images }) {
+// type Prop = Array<{ [key: string]: string }>
+type Props = {
+    images: { [key: string]: any }[]
+}
+
+export const Work: NextPage<Props> = ({ images }) => {
     const [switchImages, setSwitchImages] = useState(0)
 
-    const onClickHandler = (num) => (event) => {
+    const onClickHandler = (num: number) => (
+        event: React.MouseEvent<HTMLInputElement>
+    ) => {
         setSwitchImages(num)
     }
     useEffect(() => {
@@ -107,8 +114,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-export async function getStaticProps() {
-    const key = {
+export const getStaticProps: GetStaticProps = async () => {
+    const key: { headers: { [key: string]: string | undefined } } | any = {
         headers: { 'X-API-KEY': process.env.API_KEY },
     }
     const res = await fetch(`${process.env.API_END_POINT}/image?limit=30`, key)
@@ -121,6 +128,4 @@ export async function getStaticProps() {
     }
 }
 
-Work.propTypes = {
-    images: PropTypes.array.isRequired,
-}
+export default Work

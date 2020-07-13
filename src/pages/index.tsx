@@ -19,8 +19,8 @@ const aboutLogo = require('../../public/static/img/ABOUT.png')
 const contactLogo = require('../../public/static/img/CONTACT.png')
 
 type Props = {
-    images: { key: string }[]
-    blogs: { key: string }[]
+    images: { [key: string]: string }[]
+    blogs: { [key: string]: string }[]
 }
 
 export const Index: NextPage<Props> = ({ images, blogs }) => {
