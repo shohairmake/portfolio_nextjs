@@ -9,9 +9,21 @@ import LottieButton from '../components/work/LottieButton'
 import { WorkLogo } from '../components/common/topLogoSection'
 import { Template } from '../components/common/Template'
 
-// type Prop = Array<{ [key: string]: string }>
 type Props = {
-    images: { [key: string]: any }[]
+    images: {
+        id: string
+        createdAt: Date
+        updatedAt: Date
+        image: {
+            url: string
+        }
+        imageTags: {
+            id: string
+            createdAt: Date
+            updatedAt: Date
+            tags: 'other' | 'Black_and_White' | 'color'
+        }[]
+    }[]
 }
 
 export const Work: NextPage<Props> = ({ images }) => {
@@ -82,7 +94,7 @@ export const Work: NextPage<Props> = ({ images }) => {
     )
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
     mainContent: {
         backgroundColor: '#f8f8f8',
         width: '100%',
@@ -112,10 +124,10 @@ const useStyles = makeStyles((theme) => ({
         transformOrigin: '0 50%',
         zIndex: 100,
     },
-}))
+})
 
 export const getStaticProps: GetStaticProps = async () => {
-    const key: { headers: { [key: string]: string | undefined } } | any = {
+    const key: any = {
         headers: { 'X-API-KEY': process.env.API_KEY },
     }
     const res = await fetch(`${process.env.API_END_POINT}/image?limit=30`, key)

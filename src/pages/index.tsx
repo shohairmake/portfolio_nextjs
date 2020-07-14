@@ -19,8 +19,27 @@ const aboutLogo = require('../../public/static/img/ABOUT.png')
 const contactLogo = require('../../public/static/img/CONTACT.png')
 
 type Props = {
-    images: { [key: string]: string }[]
-    blogs: { [key: string]: string }[]
+    images: {
+        id: string
+        createdAt: Date
+        updatedAt: Date
+        image: {
+            url: string
+        }
+        tags: 'other' | 'Black_and_White' | 'color'
+    }[]
+    blogs: {
+        id: string
+        createdAt: Date
+        updatedAt: Date
+        publishedAt: string
+        title: string
+        body: string
+        tags: string[]
+        image: {
+            url: string
+        }
+    }[]
 }
 
 export const Index: NextPage<Props> = ({ images, blogs }) => {
@@ -195,7 +214,7 @@ const useStyles = makeStyles({
 })
 
 export const getStaticProps: GetStaticProps = async () => {
-    const key: { headers: { [key: string]: string | undefined } } | any = {
+    const key: any = {
         headers: { 'X-API-KEY': process.env.API_KEY },
     }
     const imageRes = await fetch(

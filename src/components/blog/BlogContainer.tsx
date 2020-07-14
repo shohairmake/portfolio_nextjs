@@ -1,4 +1,5 @@
-import React from 'react'
+import * as React from 'react'
+import { NextPage } from 'next'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -12,7 +13,22 @@ import Link from 'next/link'
 const imgEscapeUrl =
     'https://images.microcms-assets.io/protected/ap-northeast-1:ce724cba-2fc5-43d8-8189-04c7e1e5975e/service/strad/media/hair9.jpg'
 
-export default function BlogContainer({ blogs }) {
+type Props = {
+    blogs: {
+        id: string
+        createdAt: Date
+        updatedAt: Date
+        publishedAt: string
+        title: string
+        body: string
+        tags: string[]
+        image: {
+            url: string
+        }
+    }[]
+}
+
+export const BlogContainer: NextPage<Props> = ({ blogs }) => {
     const classes = useStyles()
 
     return (
@@ -68,7 +84,7 @@ export default function BlogContainer({ blogs }) {
     )
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles: any = makeStyles((theme): any => ({
     cardGrid: {
         paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
@@ -95,6 +111,4 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-BlogContainer.propTypes = {
-    blogs: PropTypes.array.isRequired,
-}
+export default BlogContainer
