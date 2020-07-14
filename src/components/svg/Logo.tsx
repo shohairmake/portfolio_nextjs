@@ -1,13 +1,22 @@
-import React from 'react'
+import * as React from 'react'
 
-export default function SVG({
+type Props = {
+    style?: object
+    fill?: string
+    width: number
+    height: number
+    className?: string
+    viewBox?: string
+}
+
+export const SVG: React.FC<Props> = ({
     style = {},
     fill = '#000',
     width = '',
     height = '',
     className = '',
     viewBox = '70 0 150 60',
-}) {
+}) => {
     return (
         <svg
             width={width}
@@ -114,3 +123,5 @@ export default function SVG({
         </svg>
     )
 }
+
+export default SVG

@@ -1,12 +1,15 @@
-import React from 'react'
+import * as React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Typography } from '@material-ui/core'
 import Link from 'next/link'
-import PropTypes from 'prop-types'
 //Lottie
-import ProgramingMan from '../../components/Lottie/programingMan/programingMan'
+import ProgramingMan from '../Lottie/programingMan/programingMan'
 
-export default function AboutContainer({ isActiveAboutInner }) {
+type Props = {
+    isActiveAboutInner: boolean
+}
+
+export const AboutContainer: React.FC<Props> = ({ isActiveAboutInner }) => {
     const classes = useStyles()
     return (
         <Grid container justify="space-between">
@@ -76,6 +79,4 @@ const useStyles = makeStyles({
     },
 })
 
-AboutContainer.propTypes = {
-    isActiveAboutInner: PropTypes.bool.isRequired,
-}
+export default AboutContainer

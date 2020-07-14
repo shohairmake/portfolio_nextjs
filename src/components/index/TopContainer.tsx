@@ -1,5 +1,6 @@
-import React from 'react'
+import * as React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { Theme } from '@material-ui/core/styles/createMuiTheme'
 import { Grid, Hidden, Typography } from '@material-ui/core'
 import {
     svgAnimation,
@@ -81,7 +82,7 @@ const textAnime = {
     animation: '$fadeInFromTop 4s',
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles: any = makeStyles((theme: Theme): any => ({
     heroContent: {
         backgroundColor: theme.palette.background.default,
         backgroundImage: 'url(/static/img/uyuniSaltLakemono.jpg)',
