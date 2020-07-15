@@ -1,14 +1,35 @@
 import React, { Fragment } from 'react'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import fetch from 'isomorphic-unfetch'
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, Grid, Typography } from '@material-ui/core'
-import PropTypes from 'prop-types'
 //component
 import { Template } from '../../components/common/Template'
 
-export default function BlogId({ blog }) {
+type Props = {
+    blog: {
+        id: string
+        createdAt: Date
+        updatedAt: Date
+        publishedAt: string
+        title: string
+        body: string
+        tags?: string[]
+        image: {
+            url: string
+        }
+    }[]
+}
+
+type Image = {
+    image: {
+        url: string
+    }
+}
+
+export const BlogId = ({ blog }: any) => {
     const classes = useStyles()
-    const Image = ({ image }) => (
+    const Image = ({ image }: Image) => (
         <img src={image.url} className={classes.image} />
     )
     return (
@@ -42,7 +63,7 @@ export default function BlogId({ blog }) {
                                     {blog.title}
                                 </Typography>
                                 <div>
-                                    {blog.tags.map((tag) => (
+                                    {blog.tags.map((tag: any) => (
                                         <Fragment key={tag.id}>
                                             <Typography
                                                 variant={'h6'}
@@ -107,22 +128,24 @@ const useStyles = makeStyles({
     },
 })
 
-export const getStaticPaths = async () => {
-    const key = {
+export const getStaticPaths: GetStaticPaths = async () => {
+    const key: any = {
         headers: { 'X-API-KEY': process.env.API_KEY },
     }
 
     const res = await fetch(`${process.env.API_END_POINT}/blogs`, key)
     const repos = await res.json()
 
-    const paths = repos.contents.map((repo) => `/blogs/${repo.id}`)
+    const paths = repos.contents.map(
+        (repo: { id: string }) => `/blogs/${repo.id}`
+    )
     return { paths, fallback: false }
 }
 
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context: any) => {
     const id = context.params.id
 
-    const key = {
+    const key: any = {
         headers: { 'X-API-KEY': process.env.API_KEY },
     }
 
@@ -136,6 +159,4 @@ export const getStaticProps = async (context) => {
     }
 }
 
-BlogId.PropTypes = {
-    blog: PropTypes.object.isRequired,
-}
+export default BlogId
