@@ -134,5 +134,5 @@ export default function CustomizedMenus() {
 }
 
 StyledMenu.propTypes = {
-    props: PropTypes.object.isRequired,
+    props: PropTypes.object,
 }

@@ -7,6 +7,7 @@ import { PageTransition } from 'next-page-transitions'
 import { DefaultSeo } from 'next-seo'
 import seoConfig from '../../next-seo.config'
 import PropTypes from 'prop-types'
+import * as gtag from '../lib/gtag'
 import 'animate.css'
 
 const DEFAULT_SEO = () => (
@@ -19,6 +20,8 @@ const DEFAULT_SEO = () => (
 )
 
 export default function StradApp({ Component, pageProps, router }) {
+    const pathName = router.pathname
+
     React.useEffect(() => {
         // Remove the server-side injected CSS.
         const jssStyles = document.querySelector('#jss-server-side')
@@ -26,6 +29,21 @@ export default function StradApp({ Component, pageProps, router }) {
             jssStyles.parentNode.removeChild(jssStyles)
         }
     }, [])
+
+    React.useEffect(() => {
+        const handleRouteChange = (url) => {
+            gtag.pageview(url)
+        }
+        router.events.on('routeChangeComplete', handleRouteChange)
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange)
+        }
+    }, [router.events])
+
+    React.useEffect(() => {
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({ event: 'optimize.activate' })
+    }, [pathName])
 
     return (
         <>

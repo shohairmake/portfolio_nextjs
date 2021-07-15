@@ -1,6 +1,7 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/styles'
+import { GA_TRACKING_ID, OPT_TRACKING_ID } from '../lib/gtag'
 import theme from '../theme'
 
 class MyDocument extends Document {
@@ -33,6 +34,29 @@ class MyDocument extends Document {
         return (
             <html lang="jp" dir="ltr">
                 <Head>
+                    {GA_TRACKING_ID && (
+                        <>
+                            <script
+                                async
+                                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                            />
+                            <script
+                                dangerouslySetInnerHTML={{
+                                    __html: `
+                                window.dataLayer = window.dataLayer || [];
+                                function gtag(){dataLayer.push(arguments);}
+                                gtag('js', new Date());
+                                gtag('config', '${GA_TRACKING_ID}', {
+                                page_path: window.location.pathname,
+                                });
+                            `,
+                                }}
+                            />
+                            <script
+                                src={`https://www.googleoptimize.com/optimize.js?id=${OPT_TRACKING_ID}`}
+                            ></script>
+                        </>
+                    )}
                     <meta charSet="utf-8" />
                     {/* Use minimum-scale=1 to enable GPU rasterization */}
                     <meta
