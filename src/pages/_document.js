@@ -54,7 +54,7 @@ class MyDocument extends Document {
                             />
                             <script
                                 src={`https://www.googleoptimize.com/optimize.js?id=${OPT_TRACKING_ID}`}
-                            />
+                            ></script>
                         </>
                     )}
                     <meta charSet="utf-8" />
