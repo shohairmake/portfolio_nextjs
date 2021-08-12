@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { ThemeProvider, StylesProvider } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../theme'
@@ -20,7 +21,8 @@ const DEFAULT_SEO = () => (
 )
 
 export default function StradApp({ Component, pageProps, router }) {
-    const pathName = router.pathname
+    const nextRouter = useRouter()
+    const pathName = nextRouter.pathname
 
     React.useEffect(() => {
         // Remove the server-side injected CSS.
@@ -34,11 +36,11 @@ export default function StradApp({ Component, pageProps, router }) {
         const handleRouteChange = (url) => {
             gtag.pageview(url)
         }
-        router.events.on('routeChangeComplete', handleRouteChange)
+        nextRouter.events.on('routeChangeComplete', handleRouteChange)
         return () => {
-            router.events.off('routeChangeComplete', handleRouteChange)
+            nextRouter.events.off('routeChangeComplete', handleRouteChange)
         }
-    }, [router.events])
+    }, [nextRouter.events])
 
     React.useEffect(() => {
         window.dataLayer = window.dataLayer || []
