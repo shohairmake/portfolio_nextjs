@@ -33,6 +33,7 @@ export default function StradApp({ Component, pageProps, router }) {
     }, [])
 
     React.useEffect(() => {
+        console.log(gtag.GA_TRACKING_ID, gtag.OPT_TRACKING_ID)
         const handleRouteChange = (url) => {
             gtag.pageview(url)
         }

@@ -38,7 +38,7 @@ class MyDocument extends Document {
                         <>
                             <script
                                 async
-                                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                                src={`https://www.googletagmanager.com/gtag/js?id=UA-120513195-2`}
                             />
                             <script
                                 dangerouslySetInnerHTML={{
@@ -46,14 +46,14 @@ class MyDocument extends Document {
                                 window.dataLayer = window.dataLayer || [];
                                 function gtag(){dataLayer.push(arguments);}
                                 gtag('js', new Date());
-                                gtag('config', '${GA_TRACKING_ID}', {
+                                gtag('config', 'UA-120513195-2', {
                                 page_path: window.location.pathname,
                                 });
                             `,
                                 }}
                             />
                             <script
-                                src={`https://www.googleoptimize.com/optimize.js?id=${OPT_TRACKING_ID}`}
+                                src={`https://www.googleoptimize.com/optimize.js?id=OPT-NKMN2C8`}
                             ></script>
                         </>
                     )}
